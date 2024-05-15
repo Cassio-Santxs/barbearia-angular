@@ -60,6 +60,7 @@ export class AutoresdetailsComponent {
             confirmButtonText: 'Ok'
           });
           this.router.navigate(['admin/autores'], { state: { carroNovo: this.obj } });
+          this.retorno.emit(this.obj);
     
         },
         error: erro => {

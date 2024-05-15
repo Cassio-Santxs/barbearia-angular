@@ -65,6 +65,7 @@ export class LivrosdetailsComponent {
             confirmButtonText: 'Ok'
           });
           this.router.navigate(['admin/livros'], { state: { carroNovo: this.obj } });
+          this.retorno.emit(this.obj);
     
         },
         error: erro => {
@@ -92,7 +93,7 @@ export class LivrosdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/carros'], { state: { carroNovo: this.obj } });
+          this.router.navigate(['admin/livros'], { state: { carroNovo: this.obj } });
           this.retorno.emit(this.obj);
 
         },

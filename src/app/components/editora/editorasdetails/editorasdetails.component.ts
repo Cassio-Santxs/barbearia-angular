@@ -65,6 +65,7 @@ export class EditorasdetailsComponent {
             confirmButtonText: 'Ok'
           });
           this.router.navigate(['admin/editoras'], { state: { carroNovo: this.obj } });
+          this.retorno.emit(this.obj);
     
         },
         error: erro => {
