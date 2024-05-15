@@ -7,6 +7,7 @@ import { MdbModalModule, MdbModalRef, MdbModalService, } from 'mdb-angular-ui-ki
 import { LivrosdetailsComponent } from '../livrosdetails/livrosdetails.component';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import Swal from 'sweetalert2';
+import { LivroService } from '../../../services/livro/livro.service';
 
 @Component({
   selector: 'app-livroslist',
@@ -25,6 +26,7 @@ import Swal from 'sweetalert2';
 
 export class LivroslistComponent {
   modalService = inject(MdbModalService); 
+  service = inject(LivroService);
 
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
@@ -34,69 +36,70 @@ export class LivroslistComponent {
   objEdit!: Livro;
 
   constructor() {
-    this.findAll();
+    this.listAll();
   }
 
-  findAll() {
-    let obj1 = new Livro();
-    obj1.id = 1;
-    obj1.nome = 'Dom Quixote';
-
-    let obj2 = new Livro();
-    obj2.id = 2;
-    obj2.nome = 'Walden';
-
-    let obj3 = new Livro();
-    obj3.id = 3;
-    obj3.nome = 'Meditações';
-
-    this.lista.push(obj1);
-    this.lista.push(obj2);
-    this.lista.push(obj3);
-  }
-
-  new() {
-    this.objEdit = new Livro();
-    this.modalRef = this.modalService.open(this.modalDetalhe);
-  }
-
-  edit(obj: Livro) {
-    this.objEdit = Object.assign({}, obj); 
-    this.modalRef = this.modalService.open(this.modalDetalhe);
-  }
-
-  retornoDetalhe(obj: Livro) {
-    if (this.objEdit.id > 0) {
-      let indice = this.lista.findIndex((o) => {
-        return o.id == this.objEdit.id;
+  listAll(){
+      this.service.listAll().subscribe({
+        next: lista => {
+          console.log('b');
+          this.lista = lista;
+        },
+        error: erro => {
+          alert('Erro ao carregar listagem de registros!');
+        }
       });
-
-      this.lista[indice] = obj;
-    } else {
-      obj.id = 55;
-
-      this.lista.push(obj);
-    }
-
-    this.modalRef.close();
   }
 
   deleteById(obj: Livro) {
     Swal.fire({
-      title: 'Deseja realmente deletar este objeto?',
+      title: 'Tem certeza que deseja deletar este registro?',
+      icon: 'warning',
+      showConfirmButton: true,
       showDenyButton: true,
       confirmButtonText: 'Sim',
-      denyButtonText: 'Não',
+      cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
-        let indice = this.lista.findIndex((o) => {
-          return o.id == obj.id;
+        this.service.delete(obj.id).subscribe({
+          next: retorno => {
+  
+            Swal.fire({
+              title: 'Deletado com sucesso!',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            });
+            this.listAll();
+          },
+          error: erro => {
+  
+            alert(erro.status);
+            console.log(erro);
+           
+            Swal.fire({
+              title: 'ERRO!',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            });
+          }
         });
-
-        this.lista.splice(indice, 1);
-
-        Swal.fire('Registro deletado com sucesso!', '', 'success')
       }
-    })
+    });
+  }
+
+  new(){
+    this.objEdit = new Livro(0,"");
+    this.modalRef = this.modalService.open(this.modalDetalhe);
+  }
+
+  edit(obj: Livro){
+    this.objEdit = Object.assign({}, obj); 
+    this.modalRef = this.modalService.open(this.modalDetalhe);
+  }
+
+  retornoDetalhe(obj: Livro){
+    this.listAll();
+
+    this.modalRef.close();
   }
 }
