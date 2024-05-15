@@ -59,7 +59,7 @@ export class AutoresdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/autores'], { state: { carroNovo: this.obj } });
+          this.router.navigate(['admin/autores'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
         },
@@ -85,7 +85,7 @@ export class AutoresdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/autores'], { state: { carroNovo: this.obj } });
+          this.router.navigate(['admin/autores'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 
         },

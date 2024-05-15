@@ -64,7 +64,7 @@ export class EditorasdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/editoras'], { state: { carroNovo: this.obj } });
+          this.router.navigate(['admin/editoras'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
         },
@@ -93,7 +93,7 @@ export class EditorasdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/editoras'], { state: { carroNovo: this.obj } });
+          this.router.navigate(['admin/editoras'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 
         },
