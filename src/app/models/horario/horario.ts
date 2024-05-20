@@ -1,4 +1,4 @@
-export class Autor {
+export class Horario {
     id!: number;
     nome!: string;
 

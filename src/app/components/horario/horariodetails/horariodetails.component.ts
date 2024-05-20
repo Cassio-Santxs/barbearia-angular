@@ -1,29 +1,28 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { Editora } from '../../../models/editora'; 
+import { Horario } from '../../../models/horario/horario';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { EditoraService } from '../../../services/editora/editora.service';
+import { HorarioService } from '../../../services/horario/horario.service'; 
 
 @Component({
-  selector: 'app-editorasdetails',
+  selector: 'app-horariodetails',
   standalone: true,
   imports: [FormsModule, CommonModule, MdbFormsModule],
-  templateUrl: './editorasdetails.component.html',
-  styleUrl: './editorasdetails.component.scss'
+  templateUrl: './horariodetails.component.html',
+  styleUrl: './horariodetails.component.scss'
 })
+export class HorariodetailsComponent {
 
-export class EditorasdetailsComponent {
-
-  @Input("obj") obj: Editora = new Editora(0, "");
+  @Input("obj") obj: Horario = new Horario(0, "");
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   router2 = inject(ActivatedRoute);
   router = inject(Router);
 
-  service = inject(EditoraService);
+  service = inject(HorarioService);
 
   constructor(){
     let id = this.router2.snapshot.params['id'];
@@ -64,7 +63,7 @@ export class EditorasdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/editoras'], { state: { objNovo: this.obj } });
+          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
         },
@@ -93,7 +92,7 @@ export class EditorasdetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/editoras'], { state: { objNovo: this.obj } });
+          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 
         },
@@ -110,9 +109,6 @@ export class EditorasdetailsComponent {
 
         }
       } );
-
-
-    
     }
   }
 }

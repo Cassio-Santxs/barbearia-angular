@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { LivroService } from '../../../services/livro/livro.service';
+import { LivroService } from '../../../services/livro/livro.service'; 
 
 @Component({
   selector: 'app-livrosdetails',

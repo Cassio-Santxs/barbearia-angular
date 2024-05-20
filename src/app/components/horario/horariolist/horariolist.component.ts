@@ -1,42 +1,41 @@
 import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Horario } from '../../../models/horario/horario'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MdbModalModule, MdbModalRef, MdbModalService, } from 'mdb-angular-ui-kit/modal';
-import { EditorasdetailsComponent } from '../editorasdetails/editorasdetails.component'; 
+import { HorariodetailsComponent } from '../horariodetails/horariodetails.component';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import Swal from 'sweetalert2';
-import { Editora } from '../../../models/editora';
-import { EditoraService } from '../../../services/editora/editora.service';
+import { HorarioService } from '../../../services/horario/horario.service';
 
 @Component({
-  selector: 'app-editoraslist',
+  selector: 'app-horariolist',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     RouterLink,
     MdbModalModule,
-    EditorasdetailsComponent,
+    HorariodetailsComponent,
     MdbAccordionModule
   ],
-  templateUrl: './editoraslist.component.html',
-  styleUrl: './editoraslist.component.scss',
+  templateUrl: './horariolist.component.html',
+  styleUrl: './horariolist.component.scss'
 })
-
-export class EditoraslistComponent {
+export class HorariolistComponent {
   modalService = inject(MdbModalService); 
-  service = inject(EditoraService);
+  service = inject(HorarioService);
 
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
 
-  lista: Editora[] = [];
-  objEdit!: Editora;
+  lista: Horario[] = [];
+  objEdit!: Horario;
 
   constructor() {
-    this.listAll();
+    //this.listAll();
   }
 
   listAll(){
@@ -51,7 +50,7 @@ export class EditoraslistComponent {
       });
   }
 
-  deleteById(obj: Editora) {
+  deleteById(obj: Horario) {
     Swal.fire({
       title: 'Tem certeza que deseja deletar este registro?',
       icon: 'warning',
@@ -88,16 +87,16 @@ export class EditoraslistComponent {
   }
 
   new(){
-    this.objEdit = new Editora(0,"");
+    this.objEdit = new Horario(0,"");
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 
-  edit(obj: Editora){
+  edit(obj: Horario){
     this.objEdit = Object.assign({}, obj); 
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 
-  retornoDetalhe(obj: Editora){
+  retornoDetalhe(obj: Horario){
     this.listAll();
 
     this.modalRef.close();

@@ -7,7 +7,7 @@ import { MdbModalModule, MdbModalRef, MdbModalService, } from 'mdb-angular-ui-ki
 import { LivrosdetailsComponent } from '../livrosdetails/livrosdetails.component';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import Swal from 'sweetalert2';
-import { LivroService } from '../../../services/livro/livro.service';
+import { LivroService } from '../../../services/livro/livro.service'
 
 @Component({
   selector: 'app-livroslist',

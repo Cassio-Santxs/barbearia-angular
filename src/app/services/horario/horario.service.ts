@@ -1,28 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Horario } from '../../models/horario/horario';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Editora } from '../../models/editora'; 
 
 @Injectable({
   providedIn: 'root'
 })
-export class EditoraService {
+export class HorarioService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8080/api/editora";
+  API = "http://localhost:8080/api/horario";
 
   constructor() { }
 
-  listAll(): Observable<Editora[]> {
-    return this.http.get<Editora[]>(this.API+"/listAll");
+  listAll(): Observable<Horario[]> {
+    return this.http.get<Horario[]>(this.API+"/listAll");
   }
 
-  save(obj: Editora): Observable<string> {
+  save(obj: Horario): Observable<string> {
     return this.http.post<string>(this.API+"/save", obj, {responseType: 'text' as 'json'} );
   }
 
-  update(obj: Editora): Observable<string> {
+  update(obj: Horario): Observable<string> {
     return this.http.put<string>(this.API+"/update/"+obj.id, obj, {responseType: 'text' as 'json'} );
   }
 
@@ -30,8 +30,8 @@ export class EditoraService {
     return this.http.delete<string>(this.API+"/delete/"+id, {responseType: 'text' as 'json'} );
   }
 
-  findById(id: number): Observable<Editora> {
-    return this.http.get<Editora>(this.API+"/findById/"+id );
+  findById(id: number): Observable<Horario> {
+    return this.http.get<Horario>(this.API+"/findById/"+id );
   }
 
 }
