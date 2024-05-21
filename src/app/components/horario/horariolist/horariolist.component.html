@@ -17,7 +17,10 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Nome</th>
+              <th scope="col">Data</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Funcionário</th>
+              <th scope="col">Cliente</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -25,9 +28,11 @@
           <tbody>
             @for (obj of lista; track $index;) {
             <tr>
-              <th scope="row">{{ obj.id }}</th>
-
-              <td>{{ obj.nome }}</td>
+              <th scope="row">{{ obj.idHorario }}</th>
+              <td>{{ obj.dtHorario }}</td>
+              <td>{{ obj.vlHorario }}</td>
+              <td>{{ obj.funcionario.nmFuncionario }}</td>
+              <td>{{ obj.cliente.nmCliente }}</td>
 
               <td>
                 <div class="row">

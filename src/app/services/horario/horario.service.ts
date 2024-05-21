@@ -23,7 +23,7 @@ export class HorarioService {
   }
 
   update(obj: Horario): Observable<string> {
-    return this.http.put<string>(this.API+"/update/"+obj.id, obj, {responseType: 'text' as 'json'} );
+    return this.http.put<string>(this.API+"/update/"+obj.idHorario, obj, {responseType: 'text' as 'json'} );
   }
 
   delete(id: number): Observable<string> {

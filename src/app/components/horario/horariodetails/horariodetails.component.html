@@ -6,16 +6,57 @@
       <div class="card">
         <div class="card-body">
           <h3>Cadastro de Horários:</h3>
-          <br>
-          <mdb-form-control>
-            <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)]="obj.nome" />
-            <label mdbLabel class="form-label" for="usuario">Nome</label>
-          </mdb-form-control>
-          <br />
+          
+          <div class="row my-4">
+            <div class="col-lg-4 col-xs-4">
+              <mdb-form-control>
+                <input mdbInput type="text" disabled id="idHorario" class="form-control" [(ngModel)]="obj.idHorario" />
+                <label mdbLabel class="form-label" for="idHorario">ID</label>
+              </mdb-form-control>
+            </div>
 
-          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">
-            Salvar
-          </button>
+            <div class="col-lg-8 col-xs-8">
+              <mdb-form-control>
+                <input mdbInput type="date" id="dtHorario" class="form-control" [(ngModel)]="obj.dtHorario" />
+                <label mdbLabel class="form-label" for="dtHorario">Data</label>
+              </mdb-form-control>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+                <mdb-form-control>
+                    <select mdbInput id="idFuncionario" class="form-control" [(ngModel)]="obj.funcionario.nmFuncionario">
+                        <option>Selecione</option>
+                        <option *ngFor="let funcionario of funcionarioList" [value]="funcionario.nmFuncionario">{{ funcionario.nmFuncionario }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="idFuncionario">Funcionário</label>
+                </mdb-form-control>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+                <mdb-form-control>
+                    <select mdbInput id="idCliente" class="form-control" [(ngModel)]="obj.cliente.nmCliente">
+                        <option>Selecione</option>
+                        <option *ngFor="let cliente of clienteList" [value]="cliente.nmCliente">{{ cliente.nmCliente }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="idCliente">Cliente</label>
+                </mdb-form-control>
+            </div>
+        </div>
+        
+        
+          
+          <div class="row">
+            <div class="col-lg-12 text-end">
+              <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
+                Salvar
+              </button>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>

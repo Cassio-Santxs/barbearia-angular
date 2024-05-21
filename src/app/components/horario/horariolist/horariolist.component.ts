@@ -8,6 +8,8 @@ import { HorariodetailsComponent } from '../horariodetails/horariodetails.compon
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import Swal from 'sweetalert2';
 import { HorarioService } from '../../../services/horario/horario.service';
+import { Cliente } from '../../../models/cliente/cliente';
+import { Funcionario } from '../../../models/funcionario/funcionario';
 
 @Component({
   selector: 'app-horariolist',
@@ -35,7 +37,7 @@ export class HorariolistComponent {
   objEdit!: Horario;
 
   constructor() {
-    //this.listAll();
+    this.listAll();
   }
 
   listAll(){
@@ -45,6 +47,7 @@ export class HorariolistComponent {
           this.lista = lista;
         },
         error: erro => {
+          debugger;
           alert('Erro ao carregar listagem de registros!');
         }
       });
@@ -60,7 +63,7 @@ export class HorariolistComponent {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.delete(obj.id).subscribe({
+        this.service.delete(obj.idHorario).subscribe({
           next: retorno => {
   
             Swal.fire({
@@ -86,8 +89,8 @@ export class HorariolistComponent {
     });
   }
 
-  new(){
-    this.objEdit = new Horario(0,"");
+  new() {
+    this.objEdit = new Horario(0,"", new Cliente("Cliente"), new Funcionario("Funcionario"), 20.00);
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 
@@ -98,7 +101,6 @@ export class HorariolistComponent {
 
   retornoDetalhe(obj: Horario){
     this.listAll();
-
     this.modalRef.close();
   }
 }

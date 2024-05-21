@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { HorarioService } from '../../../services/horario/horario.service'; 
+import { Funcionario } from '../../../models/funcionario/funcionario';
+import { Cliente } from '../../../models/cliente/cliente';
 
 @Component({
   selector: 'app-horariodetails',
@@ -16,8 +18,10 @@ import { HorarioService } from '../../../services/horario/horario.service';
 })
 export class HorariodetailsComponent {
 
-  @Input("obj") obj: Horario = new Horario(0, "");
+  @Input("obj") obj: Horario = new Horario(0, "", new Cliente("Cliente"), new Funcionario("Funcionario"), 20.00);
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
+  funcionarioList: Funcionario[] = [];
+  clienteList: Cliente[] = [];
 
   router2 = inject(ActivatedRoute);
   router = inject(Router);
@@ -52,7 +56,7 @@ export class HorariodetailsComponent {
   }
 
   save(){
-    if(this.obj.id > 0){
+    if(this.obj.idHorario > 0){
 
 
       this.service.update(this.obj).subscribe({
