@@ -29,16 +29,13 @@ export class FuncionariolistComponent {
   FuncionarioService = inject(FuncionarioService);
 
   constructor(){
-
     this.findAll();
-
   }
 
   findAll(){
 
     this.FuncionarioService.findAll().subscribe({
       next: lista => {
-        console.log("teste");
         this.lista = lista;
 
       },error: erro => {
@@ -65,4 +62,5 @@ export class FuncionariolistComponent {
   deletar(){
       
   }
+
 }

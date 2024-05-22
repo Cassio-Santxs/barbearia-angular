@@ -7,6 +7,9 @@ import { Funcionario } from '../../models/funcionario/funcionario';
   providedIn: 'root'
 })
 export class FuncionarioService {
+  save(obj: Funcionario) {
+    throw new Error('Method not implemented.');
+  }
 
   http = inject(HttpClient);
   api = "http://localhost:8080/api/funcionario";
