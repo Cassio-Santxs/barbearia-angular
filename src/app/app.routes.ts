@@ -7,6 +7,8 @@ import { ClientedetailsComponent } from './components/cliente/clientedetails/cli
 import { ClientelistComponent } from './components/cliente/clientelist/clientelist.component';
 import { FormaPagamentodetailsComponent } from './components/formaPagamento/forma-pagamentodetails/forma-pagamentodetails.component';
 import { FormaPagamentolistComponent } from './components/formaPagamento/forma-pagamentolist/forma-pagamentolist.component';
+import { FuncionariodetailsComponent } from './components/funcionario/funcionariodetails/funcionariodetails.component';
+import { FuncionariolistComponent } from './components/funcionario/funcionariolist/funcionariolist.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -15,11 +17,17 @@ export const routes: Routes = [
         {path: "horarios", component: HorariolistComponent},
         {path: "horarios/new", component: HorariodetailsComponent},
         {path: "horarios/edit/:id", component: HorariodetailsComponent},
+
         {path: "clientes", component: ClientelistComponent},
         {path: "clientes/new", component: ClientedetailsComponent},
         {path: "clientes/edit/:id", component: ClientedetailsComponent},
+
         {path: "formaPagamento", component: FormaPagamentolistComponent},
         {path: "formaPagamento/new", component: FormaPagamentodetailsComponent},
         {path: "formaPagamento/edit/:id", component: FormaPagamentodetailsComponent},
+
+        {path: "funcionario", component: FuncionariolistComponent},
+        {path: "funcionario/new", component: FuncionariodetailsComponent},
+        {path: "funcionario/edit/:id", component: FuncionariodetailsComponent},
     ]}
 ];

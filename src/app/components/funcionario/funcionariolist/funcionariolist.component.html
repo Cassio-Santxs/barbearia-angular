@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table">
+                <thead>
+
+                  <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="novo()">Adicionar</button>
+
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cpf</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   @for (funcionario of lista; track $index){
+                    <tr>
+                        <td>{{funcionario.idFuncionario}}</td>
+                        <td>{{funcionario.nmFuncionario}}</td>
+                        <td>{{funcionario.dsCpf}}</td>
+                        <td>{{funcionario.dsEmail}}</td>
+            
+                        <td>
+                          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="editar(funcionarioEdit)">Editar</button>
+                          <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deletar()">Deletar</button>
+                        </td>
+                    </tr>
+                   }
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #modalFuncionarioDetalhe>
+  <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef.close()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <app-funcionariodetails> </app-funcionariodetails>
+    </div>
+  </ng-template>
+
+
