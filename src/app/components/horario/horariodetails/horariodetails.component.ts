@@ -9,6 +9,7 @@ import { HorarioService } from '../../../services/horario/horario.service';
 import { Funcionario } from '../../../models/funcionario/funcionario';
 import { Cliente } from '../../../models/cliente/cliente';
 import { ClienteService } from '../../../services/cliente/cliente.service';
+import { FuncionarioService } from '../../../services/funcionario/funcionario.service';
 
 @Component({
   selector: 'app-horariodetails',
@@ -28,12 +29,12 @@ export class HorariodetailsComponent {
   );
 
   funcionarioObj: Funcionario = new Funcionario(
-    1, 
-    'Nome do Funcionário',
+    0, 
+    '',
     true, 
-    '123.456.789-00', 
-    'funcionario@email.com',
-    'senhaDoFuncionario'
+    '', 
+    '',
+    ''
   );
 
   @Input("obj") obj: Horario = new Horario(0, "", this.clienteObj, this.funcionarioObj, 20.00);
@@ -47,9 +48,11 @@ export class HorariodetailsComponent {
 
   service = inject(HorarioService);
   clienteService = inject(ClienteService);
+  funcionaroService = inject(FuncionarioService);
 
   constructor(){
     this.listAllClientes();
+    this.listAllFuncionarios();
 
     let id = this.router2.snapshot.params['id'];
 
@@ -64,8 +67,6 @@ export class HorariodetailsComponent {
         this.obj = data;
       },
       error: erro => {
-        alert(erro.status);
-        console.log(erro);
         Swal.fire({
           title: 'Deu algum erro!',
           icon: 'error',
@@ -89,9 +90,6 @@ export class HorariodetailsComponent {
           this.retorno.emit(this.obj);
         },
         error: erro => {
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
             title: 'Deu algum erro!',
             icon: 'error',
@@ -112,9 +110,6 @@ export class HorariodetailsComponent {
           this.retorno.emit(this.obj);
         },
         error: erro => {
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
             title: 'Deu algum erro!',
             icon: 'error',
@@ -128,8 +123,18 @@ export class HorariodetailsComponent {
   listAllClientes(){
     this.clienteService.listAll().subscribe({
       next: lista => {
-        console.log('b');
         this.clienteList = lista;
+      },
+      error: erro => {
+        alert('Erro ao carregar listagem de registros!');
+      }
+    });
+  }
+
+  listAllFuncionarios(){
+    this.funcionaroService.findAll().subscribe({
+      next: lista => {
+        this.funcionarioList = lista;
       },
       error: erro => {
         alert('Erro ao carregar listagem de registros!');
