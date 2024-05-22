@@ -6,6 +6,7 @@ import { Funcionario } from '../../../models/funcionario/funcionario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { state } from '@angular/animations';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-funcionariodetails',
@@ -20,7 +21,7 @@ export class FuncionariodetailsComponent {
     
   }
 
-  @Input("funcionario") Funcionario: Funcionario = new Funcionario(1, 
+  @Input("obj") obj: Funcionario = new Funcionario(1, 
     'Nome do Funcionário',
     true, 
     '123.456.789-00', 
@@ -43,9 +44,16 @@ export class FuncionariodetailsComponent {
   modalRef!: MdbModalRef<any>;
 
   salvar(){
-    if(this.Funcionario.idFuncionario! > 0){
+    /*if(this.obj.idFuncionario! > 0){
       alert("salvo com sucesso");
-      this.router2.navigate(["admin/funcionarios", {state: {funcionarionovo: this.Funcionario}}])
-    }
+      this.router2.navigate(["admin/funcionarios", {state: {funcionarionovo: this.obj}}])
+      
+    }*/
+
+    Swal.fire("salvo com sucesso");
+    this.retorno.emit(this.Funcionarios);
+    this.router2.navigate(["/admin/funcionario"]);
+
+  
   }
 }
