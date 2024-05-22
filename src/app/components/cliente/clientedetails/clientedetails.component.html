@@ -18,7 +18,25 @@
             <div class="col-lg-8 col-xs-8">
                 <mdb-form-control>
                     <input mdbInput type="text" id="nmCliente" class="form-control" [(ngModel)]="obj.nmCliente" />
-                    <label mdbLabel class="form-label" for="nmCliente">ID</label>
+                    <label mdbLabel class="form-label" for="nmCliente">Nome</label>
+                </mdb-form-control>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+                <mdb-form-control>
+                    <input mdbInput type="text" id="dsCPF" class="form-control" [(ngModel)]="obj.dsCpf" mask="000.000.000-00" />
+                    <label mdbLabel class="form-label" for="dsCPF">CPF</label>
+                </mdb-form-control>
+            </div>
+        </div>
+
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+                <mdb-form-control>
+                    <input mdbInput type="text" id="dsEmail" class="form-control" [(ngModel)]="obj.dsEmail" />
+                    <label mdbLabel class="form-label" for="dsEmail">E-mail</label>
                 </mdb-form-control>
             </div>
           </div>

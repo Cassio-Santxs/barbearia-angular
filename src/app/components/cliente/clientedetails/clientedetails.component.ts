@@ -7,11 +7,14 @@ import { ClienteService } from '../../../services/cliente/cliente.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-clientedetails',
   standalone: true,
-  imports: [FormsModule, CommonModule, MdbFormsModule],
+  imports: [FormsModule, CommonModule, MdbFormsModule, NgxMaskDirective, NgxMaskPipe],
+  providers: [provideNgxMask()],
   templateUrl: './clientedetails.component.html',
   styleUrl: './clientedetails.component.scss'
 })
