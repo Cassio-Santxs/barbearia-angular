@@ -1,40 +1,39 @@
 import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
-import { Horario } from '../../../models/horario/horario'; 
+import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MdbModalModule, MdbModalRef, MdbModalService, } from 'mdb-angular-ui-kit/modal';
-import { HorariodetailsComponent } from '../horariodetails/horariodetails.component';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
-import Swal from 'sweetalert2';
-import { HorarioService } from '../../../services/horario/horario.service';
 import { Cliente } from '../../../models/cliente/cliente';
-import { Funcionario } from '../../../models/funcionario/funcionario';
+import { HorarioService } from '../../../services/horario/horario.service';
+import { ClienteService } from '../../../services/cliente/cliente.service';
+import { ClientedetailsComponent } from '../clientedetails/clientedetails.component';
 
 @Component({
-  selector: 'app-horariolist',
+  selector: 'app-clientelist',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     RouterLink,
     MdbModalModule,
-    HorariodetailsComponent,
+    ClientedetailsComponent,
     MdbAccordionModule
   ],
-  templateUrl: './horariolist.component.html',
-  styleUrl: './horariolist.component.scss'
+  templateUrl: './clientelist.component.html',
+  styleUrl: './clientelist.component.scss'
 })
-export class HorariolistComponent {
+export class ClientelistComponent {
   modalService = inject(MdbModalService); 
-  service = inject(HorarioService);
+  service = inject(ClienteService);
 
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
 
-  lista: Horario[] = [];
-  objEdit!: Horario;
+  lista: Cliente[] = [];
+  objEdit!: Cliente;
 
   constructor() {
     this.listAll();
@@ -53,7 +52,7 @@ export class HorariolistComponent {
       });
   }
 
-  deleteById(obj: Horario) {
+  deleteById(obj: Cliente) {
     Swal.fire({
       title: 'Tem certeza que deseja deletar este registro?',
       icon: 'warning',
@@ -63,7 +62,7 @@ export class HorariolistComponent {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.service.delete(obj.idHorario).subscribe({
+        this.service.delete(obj.idCliente!).subscribe({
           next: retorno => {
   
             Swal.fire({
@@ -90,33 +89,16 @@ export class HorariolistComponent {
   }
 
   new() {
-    let cliente: Cliente = new Cliente(
-      1,
-      'Nome do Cliente',
-      '123.456.789-00',
-      'cliente@email.com',
-      'senhaDoCliente'
-    );
-  
-    let funcionario: Funcionario = new Funcionario(
-      1, 
-      'Nome do Funcionário',
-      true, 
-      '123.456.789-00', 
-      'funcionario@email.com',
-      'senhaDoFuncionario'
-    );
-    
-    this.objEdit = new Horario(0, "", cliente, funcionario, 20.00);
+    this.objEdit = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 
-  edit(obj: Horario) {
+  edit(obj: Cliente) {
     this.objEdit = Object.assign({}, obj); 
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 
-  retornoDetalhe(obj: Horario) {
+  retornoDetalhe(obj: Cliente) {
     this.listAll();
     this.modalRef.close();
   }

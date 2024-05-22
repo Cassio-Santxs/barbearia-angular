@@ -1,49 +1,28 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { Horario } from '../../../models/horario/horario';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Cliente } from '../../../models/cliente/cliente';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { HorarioService } from '../../../services/horario/horario.service';
+import { ClienteService } from '../../../services/cliente/cliente.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { HorarioService } from '../../../services/horario/horario.service'; 
-import { Funcionario } from '../../../models/funcionario/funcionario';
-import { Cliente } from '../../../models/cliente/cliente';
 
 @Component({
-  selector: 'app-horariodetails',
+  selector: 'app-clientedetails',
   standalone: true,
   imports: [FormsModule, CommonModule, MdbFormsModule],
-  templateUrl: './horariodetails.component.html',
-  styleUrl: './horariodetails.component.scss'
+  templateUrl: './clientedetails.component.html',
+  styleUrl: './clientedetails.component.scss'
 })
-export class HorariodetailsComponent {
-
-  clienteObj: Cliente = new Cliente(
-    1,
-    'Nome do Cliente',
-    '123.456.789-00',
-    'cliente@email.com',
-    'senhaDoCliente'
-  );
-
-  funcionarioObj: Funcionario = new Funcionario(
-    1, 
-    'Nome do Funcionário',
-    true, 
-    '123.456.789-00', 
-    'funcionario@email.com',
-    'senhaDoFuncionario'
-  );
-
-  @Input("obj") obj: Horario = new Horario(0, "", this.clienteObj, this.funcionarioObj, 20.00);
+export class ClientedetailsComponent {
+  @Input("obj") obj: Cliente = new Cliente(1,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
-  funcionarioList: Funcionario[] = [];
-  clienteList: Cliente[] = [];
 
   router2 = inject(ActivatedRoute);
   router = inject(Router);
 
-  service = inject(HorarioService);
+  service = inject(ClienteService);
 
   constructor(){
     let id = this.router2.snapshot.params['id'];
@@ -73,7 +52,7 @@ export class HorariodetailsComponent {
   }
 
   save(){
-    if(this.obj.idHorario > 0){
+    if(this.obj.idCliente! > 0){
 
 
       this.service.update(this.obj).subscribe({

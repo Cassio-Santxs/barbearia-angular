@@ -1,0 +1,39 @@
+<br />
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 centralizar topo">
+      <div class="card">
+        <div class="card-body">
+          <h3>Cadastro de Horários:</h3>
+          
+          <div class="row my-4">
+            <div class="col-lg-4 col-xs-4">
+                <mdb-form-control>
+                    <input mdbInput type="text" disabled id="idCliente" class="form-control" [(ngModel)]="obj.idCliente" />
+                    <label mdbLabel class="form-label" for="idCliente">ID</label>
+                </mdb-form-control>
+            </div>
+
+            <div class="col-lg-8 col-xs-8">
+                <mdb-form-control>
+                    <input mdbInput type="text" id="nmCliente" class="form-control" [(ngModel)]="obj.nmCliente" />
+                    <label mdbLabel class="form-label" for="nmCliente">ID</label>
+                </mdb-form-control>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-12 text-end">
+              <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
+                Salvar
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
