@@ -5,6 +5,8 @@ import { HorariolistComponent } from './components/horario/horariolist/horarioli
 import { HorariodetailsComponent } from './components/horario/horariodetails/horariodetails.component';
 import { ClientedetailsComponent } from './components/cliente/clientedetails/clientedetails.component';
 import { ClientelistComponent } from './components/cliente/clientelist/clientelist.component';
+import { FormaPagamentodetailsComponent } from './components/formaPagamento/forma-pagamentodetails/forma-pagamentodetails.component';
+import { FormaPagamentolistComponent } from './components/formaPagamento/forma-pagamentolist/forma-pagamentolist.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -16,5 +18,8 @@ export const routes: Routes = [
         {path: "clientes", component: ClientelistComponent},
         {path: "clientes/new", component: ClientedetailsComponent},
         {path: "clientes/edit/:id", component: ClientedetailsComponent},
+        {path: "formaPagamento", component: FormaPagamentolistComponent},
+        {path: "formaPagamento/new", component: FormaPagamentodetailsComponent},
+        {path: "formaPagamento/edit/:id", component: FormaPagamentodetailsComponent},
     ]}
 ];

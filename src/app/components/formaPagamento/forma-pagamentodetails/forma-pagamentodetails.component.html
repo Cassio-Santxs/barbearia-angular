@@ -1,0 +1,41 @@
+<br />
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 centralizar topo">
+      <div class="card">
+        <div class="card-body">
+          <h3>Cadastro de Forma Pagamento:</h3>
+          
+          <div class="row my-4">
+            <div class="col-lg-4 col-xs-4">
+                <mdb-form-control>
+                    <input mdbInput type="text" disabled id="idFormaPagto" class="form-control" [(ngModel)]="obj.idFormaPagto" />
+                    <label mdbLabel class="form-label" for="idFormaPagto">ID</label>
+                </mdb-form-control>
+            </div>
+
+            <div class="col-lg-8 col-xs-8">
+                <mdb-form-control>
+                    <input mdbInput type="text" id="nmFormaPagto" class="form-control" [(ngModel)]="obj.nmFormaPagto" />
+                    <label mdbLabel class="form-label" for="nmFormaPagto">Nome</label>
+                </mdb-form-control>
+            </div>
+          </div>
+
+
+          
+          <div class="row">
+            <div class="col-lg-12 text-end">
+              <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
+                Salvar
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
