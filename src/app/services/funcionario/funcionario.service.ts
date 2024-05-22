@@ -26,7 +26,7 @@ export class FuncionarioService {
   }
 
   delete(id: number): Observable<string> {
-    return this.http.delete<string>(this.api+"/delete/"+id, {responseType: 'text' as 'json'} );
+    return this.http.delete<string>(this.api+"/deleteById/"+id, {responseType: 'text' as 'json'} );
   }
 
   findById(id: number): Observable<Funcionario> {

@@ -17,7 +17,10 @@ import { FuncionarioService } from '../../../services/funcionario/funcionario.se
 export class FuncionariolistComponent {
 
   modalservice = inject(MdbModalService);
-  @ViewChild("modalDetalhe") modalFuncionarioDetalhe!: TemplateRef<any>;
+  service = inject(FuncionarioService);
+
+  @ViewChild("modalDetalhe") modalDetalhe!: TemplateRef<any>;
+
   modalRef!: MdbModalRef<any>;
 
   lista:Funcionario[] = []
@@ -35,6 +38,7 @@ export class FuncionariolistComponent {
 
     this.FuncionarioService.findAll().subscribe({
       next: lista => {
+        console.log("teste");
         this.lista = lista;
 
       },error: erro => {
@@ -45,20 +49,20 @@ export class FuncionariolistComponent {
   }
 
   novo(){
-    this.funcionarioEdit = new Funcionario(1, 
+    this.funcionarioEdit = new Funcionario(0, 
       'Nome do Funcionário',
       true, 
       '123.456.789-00', 
       'funcionario@email.com',
       'senhaDoFuncionario');
-    this.modalRef = this.modalservice.open(this.modalFuncionarioDetalhe);
+    this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
   editar(obj: Funcionario){
 
     this.funcionarioEdit = Object.assign({}, obj);
-    this.modalRef = this.modalservice.open(this.modalFuncionarioDetalhe);
+    this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
   deletar(){
-
+      
   }
 }
