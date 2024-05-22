@@ -14,7 +14,7 @@ export class FuncionarioService {
   constructor() { }
 
   findAll(): Observable<Funcionario[]>{
-    return this.http.get<Funcionario[]>(this.api+"/listAll");
+    return this.http.get<Funcionario[]>(this.api+"/findAll");
   }
 
   salvar(obj: Funcionario):Observable<String>{
