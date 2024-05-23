@@ -55,7 +55,7 @@ export class FormaPagamentodetailsComponent {
   save(){
     if(this.obj.idFormaPagto! > 0){
 
-
+      console.log(this.obj)
       this.service.update(this.obj).subscribe({
         next: retorno => {
 

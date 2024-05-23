@@ -38,14 +38,15 @@
           <div class="row my-4">
             <div class="col-lg-12 col-xs-12">
                 <mdb-form-control>
-                    <select mdbInput id="idCliente" class="form-control" [(ngModel)]="obj.cliente">
-                        <option>Selecione</option>
-                        <option *ngFor="let cliente of clienteList" [value]="cliente">{{ cliente.idCliente }} - {{ cliente.nmCliente }}</option>
+                    <select mdbInput id="idCliente" class="form-control" [(ngModel)]="obj.cliente" name="cliente">
+                        <option value="" disabled selected>Selecione</option>
+                        <option *ngFor="let cliente of clienteList" [ngValue]="cliente">{{ cliente.idCliente }} - {{ cliente.nmCliente }}</option>
                     </select>
                     <label mdbLabel class="form-label" for="idCliente">Cliente</label>
                 </mdb-form-control>
             </div>
         </div>
+        
         
         
           
