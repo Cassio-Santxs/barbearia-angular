@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -6,6 +6,10 @@ import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit
 import { Pagamento } from '../../../models/pagamento/pagamento';
 import { PagamentodetailsComponent } from '../pagamentodetails/pagamentodetails.component';
 import { PagamentoService } from '../../../services/pagamento/pagamento.service';
+import { Cliente } from '../../../models/cliente/cliente';
+import { Funcionario } from '../../../models/funcionario/funcionario';
+import { Horario } from '../../../models/horario/horario';
+import { FormaPagamento } from '../../../models/formaPagamento/forma-pagamento';
 
 @Component({
   selector: 'app-pagamentolist',
@@ -21,6 +25,9 @@ import { PagamentoService } from '../../../services/pagamento/pagamento.service'
   styleUrl: './pagamentolist.component.scss'
 })
 export class PagamentolistComponent {
+  modalService = inject(MdbModalService); 
+  pagamentoService = inject(PagamentoService);
+
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
@@ -29,8 +36,7 @@ export class PagamentolistComponent {
   objEdit!: Pagamento;
 listaPagamentos: any;
 
-  constructor(private modalService: MdbModalService, 
-              private pagamentoService: PagamentoService) {
+  constructor() {
     this.listAll();
   }
 
@@ -58,7 +64,28 @@ listaPagamentos: any;
       });
     }
   }
-
+  new() {
+    let cliente: Cliente = new Cliente(
+      1,
+      'Nome do Cliente',
+      '123.456.789-00',
+      'cliente@email.com',
+      'senhaDoCliente'
+    );
+  
+    let funcionario: Funcionario = new Funcionario(
+      1, 
+      'Nome do Funcionário',
+      true, 
+      '123.456.789-00', 
+      'funcionario@email.com',
+      'senhaDoFuncionario'
+    );
+    let horario: Horario = new Horario(0, "", cliente, funcionario, 20.00);
+    let formaPagamento: FormaPagamento = new FormaPagamento(0,'Nome do Cliente'); 
+    this.objEdit = new Pagamento(0, "",horario, formaPagamento, "");
+    this.modalRef = this.modalService.open(this.modalDetalhe);
+  }
   
 
   edit(obj: Pagamento) {

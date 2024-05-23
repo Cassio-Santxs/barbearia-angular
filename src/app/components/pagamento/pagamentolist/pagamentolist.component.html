@@ -8,6 +8,7 @@
 
         <div class="col-lg-6 text-end">
           <button
+            (click)="new()"
             class="btn btn-success"
             data-bs-toggle="modal"
             data-bs-target="#modalNovoPagamento"
@@ -88,30 +89,22 @@
 </div>
 
 <!-- Modal Detalhes do Pagamento -->
-<div
-  class="modal fade"
-  id="modalDetalhesPagamento"
-  tabindex="-1"
-  aria-labelledby="modalDetalhesPagamentoLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalDetalhesPagamentoLabel">
-          Detalhes do Pagamento
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <!-- Aqui você pode exibir os detalhes do pagamento selecionado -->
-        <!-- Certifique-se de mostrar informações como ID, data, valor, funcionário e cliente -->
-      </div>
-    </div>
+<ng-template #modalDetalhe>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Horários</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
   </div>
-</div>
+
+  <div class="modal-body">
+    <app-pagamentodetails
+      [obj]="objEdit"
+      (retorno)="retornoDetalhe($event)"
+    ></app-pagamentodetails>
+  </div>
+</ng-template>
