@@ -9,6 +9,8 @@ import { FormaPagamentodetailsComponent } from './components/formaPagamento/form
 import { FormaPagamentolistComponent } from './components/formaPagamento/forma-pagamentolist/forma-pagamentolist.component';
 import { FuncionariodetailsComponent } from './components/funcionario/funcionariodetails/funcionariodetails.component';
 import { FuncionariolistComponent } from './components/funcionario/funcionariolist/funcionariolist.component';
+import { PagamentodetailsComponent } from './components/pagamento/pagamentodetails/pagamentodetails.component';
+import { PagamentolistComponent } from './components/pagamento/pagamentolist/pagamentolist.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -29,5 +31,9 @@ export const routes: Routes = [
         {path: "funcionario", component: FuncionariolistComponent},
         {path: "funcionario/new", component: FuncionariodetailsComponent},
         {path: "funcionario/edit/:id", component: FuncionariodetailsComponent},
+
+        {path: "pagamento", component: PagamentolistComponent},
+        {path: "pagamento/new", component: PagamentodetailsComponent},
+        {path: "pagamento/edit/:id", component: PagamentodetailsComponent},
     ]}
 ];

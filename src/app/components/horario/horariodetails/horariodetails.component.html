@@ -1,23 +1,35 @@
 <br />
 <div class="container">
   <div class="row">
-
     <div class="col-lg-12 centralizar topo">
       <div class="card">
         <div class="card-body">
           <h3>Cadastro de Horários:</h3>
-          
+
           <div class="row my-4">
             <div class="col-lg-4 col-xs-4">
               <mdb-form-control>
-                <input mdbInput type="text" disabled id="idHorario" class="form-control" [(ngModel)]="obj.idHorario" />
+                <input
+                  mdbInput
+                  type="text"
+                  disabled
+                  id="idHorario"
+                  class="form-control"
+                  [(ngModel)]="obj.idHorario"
+                />
                 <label mdbLabel class="form-label" for="idHorario">ID</label>
               </mdb-form-control>
             </div>
 
             <div class="col-lg-8 col-xs-8">
               <mdb-form-control>
-                <input mdbInput type="date" id="dtHorario" class="form-control" [(ngModel)]="obj.dtHorario" />
+                <input
+                  mdbInput
+                  type="date"
+                  id="dtHorario"
+                  class="form-control"
+                  [(ngModel)]="obj.dtHorario"
+                />
                 <label mdbLabel class="form-label" for="dtHorario">Data</label>
               </mdb-form-control>
             </div>
@@ -25,42 +37,68 @@
 
           <div class="row my-4">
             <div class="col-lg-12 col-xs-12">
-                <mdb-form-control>
-                    <select mdbInput id="idFuncionario" class="form-control" [(ngModel)]="obj.funcionario">
-                        <option [value]="null">Selecione</option>
-                        <option *ngFor="let funcionario of funcionarioList" [value]="funcionario">{{funcionario.idFuncionario}} - {{ funcionario.nmFuncionario }}</option>
-                    </select>
-                    <label mdbLabel class="form-label" for="idFuncionario">Funcionário</label>
-                </mdb-form-control>
+              <mdb-form-control>
+                <select
+                  mdbInput
+                  id="idFuncionario"
+                  class="form-control"
+                  [(ngModel)]="obj.funcionario"
+                >
+                  <option [value]="null">Selecione</option>
+                  <option
+                    *ngFor="let funcionario of funcionarioList"
+                    [value]="funcionario"
+                  >
+                    {{ funcionario.idFuncionario }} -
+                    {{ funcionario.nmFuncionario }}
+                  </option>
+                </select>
+                <label mdbLabel class="form-label" for="idFuncionario"
+                  >Funcionário</label
+                >
+              </mdb-form-control>
             </div>
           </div>
 
           <div class="row my-4">
             <div class="col-lg-12 col-xs-12">
-                <mdb-form-control>
-                    <select mdbInput id="idCliente" class="form-control" [(ngModel)]="obj.cliente" name="cliente">
-                        <option value="" disabled selected>Selecione</option>
-                        <option *ngFor="let cliente of clienteList" [ngValue]="cliente">{{ cliente.idCliente }} - {{ cliente.nmCliente }}</option>
-                    </select>
-                    <label mdbLabel class="form-label" for="idCliente">Cliente</label>
-                </mdb-form-control>
+              <mdb-form-control>
+                <select
+                  mdbInput
+                  id="idCliente"
+                  class="form-control"
+                  [(ngModel)]="obj.cliente"
+                  name="cliente"
+                >
+                  <option value="" disabled selected>Selecione</option>
+                  <option
+                    *ngFor="let cliente of clienteList"
+                    [ngValue]="cliente"
+                  >
+                    {{ cliente.idCliente }} - {{ cliente.nmCliente }}
+                  </option>
+                </select>
+                <label mdbLabel class="form-label" for="idCliente"
+                  >Cliente</label
+                >
+              </mdb-form-control>
             </div>
-        </div>
-        
-        
-        
-          
+          </div>
+
           <div class="row">
             <div class="col-lg-12 text-end">
-              <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
+              <button
+                type="button"
+                class="btn btn-primary"
+                mdbRipple
+                (click)="save()"
+              >
                 Salvar
               </button>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
-
   </div>
 </div>
