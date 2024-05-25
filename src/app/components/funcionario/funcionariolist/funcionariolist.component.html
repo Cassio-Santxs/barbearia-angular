@@ -2,11 +2,20 @@
     <div class="card">
         <div class="card-body">
 
+          <div class="row mb-3">
+            <div class="col-lg-6 text-start">
+                <h3>Funcionários</h3>
+            </div>
+ 
+            <div class="col-lg-6 text-end">
+                <button (click)="novo()" class="btn btn-success">
+                    <i class="fa fa-plus fa-1x"><span style="padding-left: 8px;">Novo</span></i>
+                </button>
+            </div>
+         </div>
+
             <table class="table">
                 <thead>
-
-                  <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="novo()">Adicionar</button>
-
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
@@ -23,9 +32,18 @@
                         <td>{{funcionario.dsEmail}}</td>
             
                         <td>
-                          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="editar(funcionarioEdit)">Editar</button>
-                          <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deletar()">Deletar</button>
-                        </td>
+                          <div class="row">
+                             <div class="col-lg-12 text-end">
+                                 <button (click)="editar(funcionario)" class="btn btn-success">
+                                     <i class="fa fa-pen fa-1x"></i>
+                                 </button>
+                
+                                <button (click)="deleteById(funcionario)" class="btn btn-danger ms-2">
+                                  <i class="fa fa-trash-can fa-1x"></i>
+                                </button>
+                             </div>
+                          </div>
+                        </td>>
                     </tr>
                    }
                 </tbody>
@@ -46,7 +64,7 @@
       ></button>
     </div>
     <div class="modal-body">
-      <app-funcionariodetails> </app-funcionariodetails>
+      <app-funcionariodetails [obj]="funcionarioEdit" (retorno)="retornoDetalhe($event)"> </app-funcionariodetails>
     </div>
   </ng-template>
 

@@ -6,6 +6,7 @@ import { FuncionariodetailsComponent } from '../funcionariodetails/funcionariode
 import { Funcionario } from '../../../models/funcionario/funcionario'; 
 import{ MdbModalModule, MdbModalRef, MdbModalService,} from "mdb-angular-ui-kit/modal";
 import { FuncionarioService } from '../../../services/funcionario/funcionario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-funcionariolist',
@@ -46,21 +47,54 @@ export class FuncionariolistComponent {
   }
 
   novo(){
-    this.funcionarioEdit = new Funcionario(0, 
-      'Nome do Funcionário',
-      true, 
-      '123.456.789-00', 
-      'funcionario@email.com',
-      'senhaDoFuncionario');
+    this.funcionarioEdit = new Funcionario(0, 'Nome do Funcionário', true, '123.456.789-00', 'funcionario@email.com','senhaDoFuncionario');
     this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
+
   editar(obj: Funcionario){
 
     this.funcionarioEdit = Object.assign({}, obj);
     this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
-  deletar(){
-      
+  deleteById(obj: Funcionario) {
+    Swal.fire({
+      title: 'Tem certeza que deseja deletar este registro?',
+      icon: 'warning',
+      showConfirmButton: true,
+      showDenyButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.delete(obj.idFuncionario!).subscribe({
+          next: retorno => {
+  
+            Swal.fire({
+              title: 'Deletado com sucesso!',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            });
+            this.findAll();
+          },
+          error: erro => {
+  
+            alert(erro.status);
+            console.log(erro);
+           
+            Swal.fire({
+              title: 'ERRO!',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            });
+          }
+        });
+      }
+    });
+  }
+
+  retornoDetalhe(obj: Funcionario) {
+    this.findAll();
+    this.modalRef.close();
   }
 
 }
