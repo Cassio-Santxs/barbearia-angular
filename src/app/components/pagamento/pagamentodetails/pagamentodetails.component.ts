@@ -9,13 +9,16 @@ import { Funcionario } from '../../../models/funcionario/funcionario';
 import { FormaPagamentoService } from '../../../services/formaPagamento/forma-pagamento.service';
 import { HorarioService } from '../../../services/horario/horario.service';
 import { PagamentoService } from '../../../services/pagamento/pagamento.service';
-
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-pagamentodetails',
   standalone: true,
-  imports: [],
+  imports: [ FormsModule, CommonModule, MdbFormsModule],
   templateUrl: './pagamentodetails.component.html',
   styleUrl: './pagamentodetails.component.scss'
+  
 })
 export class PagamentodetailsComponent {
 
@@ -80,7 +83,7 @@ export class PagamentodetailsComponent {
   }
 
   save(){
-    if (this.obj.idPagamento > 0) {
+    if (this.obj.idPagamento! > 0) {
       this.service.update(this.obj).subscribe({
         next: retorno => {
           Swal.fire({
