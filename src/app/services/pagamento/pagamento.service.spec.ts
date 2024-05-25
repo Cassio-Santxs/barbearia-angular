@@ -1,7 +1,16 @@
+import { TestBed } from '@angular/core/testing';
+
 import { PagamentoService } from './pagamento.service';
 
 describe('PagamentoService', () => {
-  it('should create an instance', () => {
-    expect(new PagamentoService()).toBeTruthy();
+  let service: PagamentoService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(PagamentoService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 });
