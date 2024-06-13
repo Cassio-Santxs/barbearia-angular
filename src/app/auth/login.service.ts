@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { Login } from './login';
-import { Usuario } from './usuario';
+import { Payload } from './payload.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,7 @@ export class LoginService {
   }
 
   hasPermission(role: string) {
-    let user = this.jwtDecode() as Usuario;
+    let user = this.jwtDecode() as Payload;
     if (user.role == role)
       return true;
     else
