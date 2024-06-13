@@ -14,13 +14,14 @@ import { PagamentolistComponent } from './components/pagamento/pagamentolist/pag
 import { CadastroComponent } from './components/layout/cadastro/cadastro.component';
 
 
+import { loginGuard } from './auth/login.guard';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
     { path: "login", component: LoginComponent },
     {path: "cadastro",component:CadastroComponent},
     
-    { path: "admin", component: PrincipalComponent, children: [
+    { path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
         {path: "horarios", component: HorariolistComponent},
         {path: "horarios/new", component: HorariodetailsComponent},
         {path: "horarios/edit/:id", component: HorariodetailsComponent},

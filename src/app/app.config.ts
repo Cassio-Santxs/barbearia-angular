@@ -3,9 +3,10 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { meuhttpInterceptor } from './auth/http-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations(), provideEnvironmentNgxMask(), provideHttpClient()]
+  providers: [provideRouter(routes), provideAnimations(), provideEnvironmentNgxMask(), provideHttpClient(withInterceptors([meuhttpInterceptor]))]
 };
