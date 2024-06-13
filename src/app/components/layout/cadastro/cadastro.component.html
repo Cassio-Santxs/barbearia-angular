@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-QgnmVCfYQwWekWaLR1w5KNpg7PAF1aHZ12OexVKPObwvbgKZ8zxCdY67+ygS+67ZTfij4lw2FkN4WWsUefY9yA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+        }
+
+        .form-signin {
+            max-width: 380px;
+            padding: 15px;
+            margin: auto;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Ajustes para o formulário */
+        .form-signin .form-group {
+            margin-bottom: 20px; /* Aumenta a distância entre os elementos do formulário */
+        }
+
+        .form-signin button.btn-primary {
+            font-size: 16px; /* Reduz o tamanho da fonte do botão */
+        }
+    </style>
+</head>
+
+<body>
+    <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal text-center">Cadastra-se</h1>
+
+        <div class="form-group">
+            <label for="inputNome">Nome</label>
+            <input type="text" id="inputNome" class="form-control" placeholder="Seu nome" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Seu email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="inputSenha">Senha</label>
+            <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required>
+        </div>
+
+        <div class="form-group">
+            <label for="inputConfirmaSenha">Confirme sua Senha</label>
+            <input type="password" id="inputConfirmaSenha" class="form-control" placeholder="Confirme sua senha"
+                required>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+    </form>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-DywAwa3jg/kz7+46/xm4n5Eiy6M/kxvb8Urb+ZW+yI5l2RSv+zo5R8SuTI8brCUv"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-HYZkhA/QfvzTY2NlRGJ0LRqF2QfZy1lHHcW6W39cVzs+8kRb4ng5Pw8j6Jw/0dC5"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

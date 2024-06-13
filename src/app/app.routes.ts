@@ -11,10 +11,15 @@ import { FuncionariodetailsComponent } from './components/funcionario/funcionari
 import { FuncionariolistComponent } from './components/funcionario/funcionariolist/funcionariolist.component';
 import { PagamentodetailsComponent } from './components/pagamento/pagamentodetails/pagamentodetails.component';
 import { PagamentolistComponent } from './components/pagamento/pagamentolist/pagamentolist.component';
+import { CadastroComponent } from './components/layout/cadastro/cadastro.component';
+
+
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
     { path: "login", component: LoginComponent },
+    {path: "cadastro",component:CadastroComponent},
+    
     { path: "admin", component: PrincipalComponent, children: [
         {path: "horarios", component: HorariolistComponent},
         {path: "horarios/new", component: HorariodetailsComponent},
@@ -35,5 +40,8 @@ export const routes: Routes = [
         {path: "pagamento", component: PagamentolistComponent},
         {path: "pagamento/new", component: PagamentodetailsComponent},
         {path: "pagamento/edit/:id", component: PagamentodetailsComponent},
+
+  
+    
     ]}
 ];
