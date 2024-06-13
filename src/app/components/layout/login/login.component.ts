@@ -12,6 +12,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 })
 
 export class LoginComponent {
+  
   dsLogin!: string;
   dsSenha!: string;
 
