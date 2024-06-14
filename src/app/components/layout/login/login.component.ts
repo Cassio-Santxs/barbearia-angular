@@ -16,7 +16,7 @@ import { Login } from '../../../auth/login';
 export class LoginComponent {
   
   login = new Login();
-  
+
   router = inject(Router);
   loginService = inject(LoginService);
 
@@ -25,10 +25,10 @@ export class LoginComponent {
       next: token => { // QUANDO DÁ CERTO
 		if(token)
 			this.loginService.addToken(token); //MUITO IMPORTANTE
-        this.router.navigate(['/admin/carros']);
+        this.router.navigate(['/admin']);
       },
       error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        //alert('Usuário ou senha incorretas');
         console.error(erro);
       }
     });

@@ -19,7 +19,7 @@
                           id="form1"
                           class="form-control"
                           (keyup.enter)="logar()"
-                          [(ngModel)]="dsLogin"
+                          [(ngModel)]="login.username"
                         />
                         <label mdbLabel class="form-label" for="form1">Usuário</label>
                     </mdb-form-control>
@@ -31,14 +31,16 @@
                           id="form1"
                           class="form-control"
                           (keyup.enter)="logar()"
-                          [(ngModel)]="dsSenha"
+                          [(ngModel)]="login.password"
                         />
                         <label mdbLabel class="form-label" for="form1">Senha</label>
                    
                     </mdb-form-control>
-                    <br>       <a class="nav-link" href="cadastro">Cadastre-se</a>
+                           
                     <div class="col-lg-12 text-center">
                         <button (click)="logar()" class="btn btn-lg btn-success">Entrar</button>
+                        <a class="btn btn-lg btn-" href="cadastro">Cadastre-se</a>
+                        
                     </div>
                 </div>
             </div>

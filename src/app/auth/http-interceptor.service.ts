@@ -20,7 +20,7 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
 	  
 	  
         if (err.status === 401) {
-          alert('401 - tratar aqui');
+          alert('Usuário ou senha incorretos');
           router.navigate(['/login']);
         } else if (err.status === 403) {
           alert('403 - tratar aqui');
