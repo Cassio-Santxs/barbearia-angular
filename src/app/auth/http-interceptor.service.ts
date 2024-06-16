@@ -7,6 +7,8 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
 
   let router = inject(Router);
 
+
+  //inclui o token do localstorage em cadas requisicao http
   let token = localStorage.getItem('token');
   if (token && !router.url.includes('/login')) {
     request = request.clone({
@@ -14,6 +16,8 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
     });
   }
 
+
+  //trata os erros dos responses
   return next(request).pipe(
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
@@ -23,7 +27,7 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
           alert('Usuário ou senha incorretos');
           router.navigate(['/login']);
         } else if (err.status === 403) {
-          alert('403 - tratar aqui');
+          alert('Você não tem permissão');
 		  router.navigate(['/login']);
         } else {
           console.error('HTTP error:', err);
