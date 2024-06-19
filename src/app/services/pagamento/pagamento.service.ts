@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 export class PagamentoService {
     http = inject(HttpClient);
 
-  API = "http://localhost:8080/api/horario";
+  API = "http://localhost:8080/api/pagamento";
 
   constructor() { }
 

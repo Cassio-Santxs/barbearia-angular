@@ -8,87 +8,78 @@
           <div class="row my-4">
             <div class="col-lg-4 col-xs-4">
               <div class="form-group">
-                <label for="idPagamento">ID:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="idPagamento"
-                  disabled
-                />
+                <mdb-form-control>
+
+                  <input mdbInput type="text" id="idPagamento" class="form-control" [(ngModel)]="obj.idPagamento"
+                    disabled />
+                  <label mdbLabel class="form-label" for="idPagamento">ID:</label>
+                </mdb-form-control>
+
+
               </div>
             </div>
 
-            <div class="row my-4">
-              <div class="col-lg-12 col-xs-12">
-                <mdb-form-control>
-                  <select
-                    mdbInput
-                    id="idFormaPagto"
-                    class="form-control"
-                    [(ngModel)]="obj.formaPagamento"
-                  >
-                    <option [value]="null">Selecione</option>
-                    <option
-                      *ngFor="let formaPagamento of formaPagamentoList"
-                      [value]="formaPagamento"
-                    >
-                      {{ formaPagamento.idFormaPagto }} -
-                      {{ formaPagamento.nmFormaPagto }}
-                    </option>
-                  </select>
-                  <label mdbLabel class="form-label" for="idFuncionario"
-                    >Forma de Pagamento</label
-                  >
-                </mdb-form-control>
-              </div>
+            <div class="col-lg-8 col-xs-8">
+              <mdb-form-control>
+                <input mdbInput type="date" id="dtHorario" class="form-control" [(ngModel)]="obj.dtPagamento" />
+                <label mdbLabel class="form-label" for="dtHorario">Data Pagamento</label>
+              </mdb-form-control>
             </div>
+          </div>
 
-            <div class="row my-4">
-              <div class="col-lg-12 col-xs-12">
-                <mdb-form-control>
-                  <select
-                    mdbInput
-                    id="idHorario"
-                    class="form-control"
-                    [(ngModel)]="obj.horario"
-                  >
-                    <option [value]="null">Selecione</option>
-                    <option
-                      *ngFor="let horario of horarioList"
-                      [value]="horario"
-                    >
-                      {{ horario.idHorario }} -
-                      {{ horario.dtHorario }}
-                    </option>
-                  </select>
-                  <label mdbLabel class="form-label" for="idHorario"
-                    >Horario</label
-                  >
-                </mdb-form-control>
-              </div>
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+              <mdb-form-control>
+                <select mdbInput id="idFormaPagto" class="form-control" [(ngModel)]="obj.formaPagamento"
+                  name="formaPagamento">
+                  <option [ngValue]="null">Selecione</option>
+                  <option *ngFor="let formaPagamento of formaPagamentoList" [ngValue]="formaPagamento">
+                    {{ formaPagamento.idFormaPagto }} - {{ formaPagamento.nmFormaPagto }}
+                  </option>
+                </select>
+
+                <label mdbLabel class="form-label" for="idFuncionario">Forma de Pagamento</label>
+              </mdb-form-control>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-lg-12 col-xs-12">
+              <mdb-form-control>
+                <select mdbInput id="idHorario" class="form-control" [(ngModel)]="obj.horario" name="horario">
+                  <option [ngValue]="null">Selecione</option>
+                  <option *ngFor="let horario of horarioList" [ngValue]="horario">
+                    {{ horario.idHorario }} - {{ horario.dtHorario }}
+                  </option>
+                </select>
+
+                <label mdbLabel class="form-label" for="idHorario">Horario</label>
+              </mdb-form-control>
             </div>
           </div>
 
           <div class="row my-4">
             <div class="col-lg-12 col-xs-12">
               <div class="form-group">
-                <label for="situacaoPagamento">Situação de Pagamento:</label>
-                <select class="form-control" id="situacaoPagamento">
-                  <option value="pago">PAGO</option>
-                  <option value="pendente">PENDENTE</option>
-                </select>
+                <mdb-form-control>
+
+                  <select mdbInput class="form-control" id="situacaoPagamento" name="situacaoPagamento"
+                    [(ngModel)]="obj.dsSituacao">
+                    <option value="pago">PAGO</option>
+                    <option value="pendente">PENDENTE</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="situacaoPagamento">Situação de Pagamento:</label>
+                </mdb-form-control>
+
+
               </div>
+
             </div>
           </div>
 
           <div class="row">
             <div class="col-lg-12 text-end">
-              <button
-                type="button"
-                class="btn btn-primary"
-                mdbRipple
-                (click)="save()"
-              >
+              <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
                 Salvar
               </button>
             </div>

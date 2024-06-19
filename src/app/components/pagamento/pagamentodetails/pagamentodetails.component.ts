@@ -96,6 +96,7 @@ export class PagamentodetailsComponent {
           this.retorno.emit(this.obj);
         },
         error: erro => {
+          debugger;
           Swal.fire({
             title: 'Deu algum erro!',
             icon: 'error',
@@ -130,7 +131,6 @@ export class PagamentodetailsComponent {
     this.horarioService.listAll().subscribe({
       next: lista => {
         this.horarioList = lista;
-        debugger;
       },
       error: erro => {
         alert('Erro ao carregar listagem de registros!');
