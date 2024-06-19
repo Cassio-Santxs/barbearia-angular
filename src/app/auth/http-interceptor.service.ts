@@ -25,10 +25,8 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
 	  
         if (err.status === 401) {
           alert('Usuário ou senha incorretos');
-          router.navigate(['/login']);
         } else if (err.status === 403) {
           alert('Você não tem permissão');
-		  router.navigate(['/login']);
         } else {
           console.error('HTTP error:', err);
         }

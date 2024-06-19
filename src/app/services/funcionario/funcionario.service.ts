@@ -21,7 +21,7 @@ export class FuncionarioService {
   }
 
   salvar(obj: Funcionario):Observable<String>{
-    return this.http.put<string>(this.api+"/save", obj, {responseType: "text" as "json"});
+    return this.http.post<string>(this.api+"/save", obj, {responseType: "text" as "json"});
   }
 
   update(obj: Funcionario): Observable<string> {
