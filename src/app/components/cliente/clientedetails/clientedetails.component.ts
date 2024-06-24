@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { from } from 'rxjs';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'app-clientedetails',
@@ -18,7 +19,11 @@ import { from } from 'rxjs';
   templateUrl: './clientedetails.component.html',
   styleUrl: './clientedetails.component.scss'
 })
+
+
 export class ClientedetailsComponent {
+loginService = inject (LoginService);
+
   @Input("obj") obj: Cliente = new Cliente(1,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 

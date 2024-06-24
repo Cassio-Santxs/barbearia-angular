@@ -11,38 +11,33 @@ import { FuncionariodetailsComponent } from './components/funcionario/funcionari
 import { FuncionariolistComponent } from './components/funcionario/funcionariolist/funcionariolist.component';
 import { PagamentodetailsComponent } from './components/pagamento/pagamentodetails/pagamentodetails.component';
 import { PagamentolistComponent } from './components/pagamento/pagamentolist/pagamentolist.component';
-import { CadastroComponent } from './components/layout/cadastro/cadastro.component';
-
-
 import { loginGuard } from './auth/login.guard';
+import { CadastroComponent } from './components/layout/cadastro/cadastro.component'; // Importação corrigida
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
     { path: "login", component: LoginComponent },
-    {path: "cadastro",component:CadastroComponent},
+    { path: "cadastro", component: CadastroComponent }, // Rota para o CadastroComponent
     
     { path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
-        {path: "horarios", component: HorariolistComponent},
-        {path: "horarios/new", component: HorariodetailsComponent},
-        {path: "horarios/edit/:id", component: HorariodetailsComponent},
+        { path: "horarios", component: HorariolistComponent },
+        { path: "horarios/new", component: HorariodetailsComponent },
+        { path: "horarios/edit/:id", component: HorariodetailsComponent },
 
-        {path: "clientes", component: ClientelistComponent},
-        {path: "clientes/new", component: ClientedetailsComponent},
-        {path: "clientes/edit/:id", component: ClientedetailsComponent},
+        { path: "clientes", component: ClientelistComponent },
+        { path: "clientes/new", component: ClientedetailsComponent },
+        { path: "clientes/edit/:id", component: ClientedetailsComponent },
 
-        {path: "formaPagamento", component: FormaPagamentolistComponent},
-        {path: "formaPagamento/new", component: FormaPagamentodetailsComponent},
-        {path: "formaPagamento/edit/:id", component: FormaPagamentodetailsComponent},
+        { path: "formaPagamento", component: FormaPagamentolistComponent },
+        { path: "formaPagamento/new", component: FormaPagamentodetailsComponent },
+        { path: "formaPagamento/edit/:id", component: FormaPagamentodetailsComponent },
 
-        {path: "funcionario", component: FuncionariolistComponent},
-        {path: "funcionario/new", component: FuncionariodetailsComponent},
-        {path: "funcionario/edit/:id", component: FuncionariodetailsComponent},
+        { path: "funcionario", component: FuncionariolistComponent },
+        { path: "funcionario/new", component: FuncionariodetailsComponent },
+        { path: "funcionario/edit/:id", component: FuncionariodetailsComponent },
 
-        {path: "pagamento", component: PagamentolistComponent},
-        {path: "pagamento/new", component: PagamentodetailsComponent},
-        {path: "pagamento/edit/:id", component: PagamentodetailsComponent},
-
-  
-    
+        { path: "pagamento", component: PagamentolistComponent },
+        { path: "pagamento/new", component: PagamentodetailsComponent },
+        { path: "pagamento/edit/:id", component: PagamentodetailsComponent },
     ]}
 ];
