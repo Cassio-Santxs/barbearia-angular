@@ -47,7 +47,6 @@ export class HorariolistComponent {
           this.lista = lista;
         },
         error: erro => {
-          debugger;
           alert('Erro ao carregar listagem de registros!');
         }
       });

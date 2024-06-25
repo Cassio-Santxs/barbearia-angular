@@ -77,6 +77,7 @@ export class HorariodetailsComponent {
   }
 
   save(){
+    this.obj.cliente.role = "cliente";
     if (this.obj.idHorario > 0) {
       this.service.update(this.obj).subscribe({
         next: retorno => {
@@ -98,7 +99,6 @@ export class HorariodetailsComponent {
         }
       });
     } else {
-      debugger;
       this.service.save(this.obj).subscribe({
         next: retorno => {
           Swal.fire({
@@ -125,7 +125,6 @@ export class HorariodetailsComponent {
     this.clienteService.listAll().subscribe({
       next: lista => {
         this.clienteList = lista;
-        debugger;
       },
       error: erro => {
         alert('Erro ao carregar listagem de registros!');

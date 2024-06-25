@@ -96,7 +96,6 @@ export class PagamentodetailsComponent {
           this.retorno.emit(this.obj);
         },
         error: erro => {
-          debugger;
           Swal.fire({
             title: 'Deu algum erro!',
             icon: 'error',

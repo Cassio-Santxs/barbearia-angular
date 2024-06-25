@@ -30,7 +30,7 @@ export class LoginComponent {
 		if(token)
       //console.log(token)
 			this.loginService.addToken(token); //MUITO IMPORTANTE
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/dashboard']);
       },
       error: erro => { // QUANDO DÁ ERRO
         //alert('Usuário ou senha incorretas');

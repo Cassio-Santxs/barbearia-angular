@@ -13,6 +13,7 @@ import { PagamentodetailsComponent } from './components/pagamento/pagamentodetai
 import { PagamentolistComponent } from './components/pagamento/pagamentolist/pagamentolist.component';
 import { loginGuard } from './auth/login.guard';
 import { CadastroComponent } from './components/layout/cadastro/cadastro.component'; // Importação corrigida
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -20,6 +21,8 @@ export const routes: Routes = [
     { path: "cadastro", component: CadastroComponent }, // Rota para o CadastroComponent
     
     { path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
+        { path: "dashboard", component: DashboardComponent },
+
         { path: "horarios", component: HorariolistComponent },
         { path: "horarios/new", component: HorariodetailsComponent },
         { path: "horarios/edit/:id", component: HorariodetailsComponent },
