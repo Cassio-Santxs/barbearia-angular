@@ -18,7 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
     { path: "login", component: LoginComponent },
-    { path: "cadastro", component: CadastroComponent }, // Rota para o CadastroComponent
+    { path: "cadastro", component:CadastroComponent  }, // Rota para o CadastroComponent
     
     { path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
         { path: "dashboard", component: DashboardComponent },

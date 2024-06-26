@@ -27,6 +27,7 @@ export class LoginComponent {
   logar() {
     this.loginService.logar(this.login).subscribe({
       next: token => { // QUANDO DÁ CERTO
+        console.log(token);
 		if(token)
       //console.log(token)
 			this.loginService.addToken(token); //MUITO IMPORTANTE

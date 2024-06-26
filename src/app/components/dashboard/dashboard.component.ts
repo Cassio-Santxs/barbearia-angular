@@ -22,7 +22,7 @@ export class DashboardComponent {
 
   clientes: Cliente[] = [
     { idCliente: 1, nmCliente: 'John Doe', dsCpf: '123.456.789-00', dsEmail: 'john@example.com', dsSenha: 'password123' },
-    { idCliente: 2, nmCliente: 'Jane Smith', dsCpf: '987.654.321-00', dsEmail: 'jane@example.com', dsSenha: 'password456' },
+    { idCliente: 2, nmCliente: 'Jane Smith', dsCpf: '987.654.321-00', dsEmail: 'jane@example.com', dsSenha: 'password456'},
   ];
 
   serviceCliente = inject(ClienteService);

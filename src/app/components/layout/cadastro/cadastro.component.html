@@ -38,32 +38,34 @@
 </head>
 
 <body>
-    <form class="form-signin">
+    <form class="form-signin" (ngSubmit)="save()">
         <h1 class="h3 mb-3 font-weight-normal text-center">Cadastra-se</h1>
-
+    
+       
+    
         <div class="form-group">
-            <label for="inputNome">Nome</label>
-            <input type="text" id="inputNome" class="form-control" placeholder="Seu nome" required autofocus>
+            <label for="nmCliente">Nome</label>
+            <input id="nmCliente" name="nmCliente" type="text" class="form-control" [(ngModel)]="obj.nmCliente">
         </div>
-
+    
         <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Seu email" required>
+            <input type="email" id="inputEmail" name="dsEmail" class="form-control" placeholder="Seu email" required [(ngModel)]="obj.dsEmail">
         </div>
-
+    
         <div class="form-group">
             <label for="inputSenha">Senha</label>
-            <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required>
+            <input type="password" id="inputSenha" name="dsSenha" class="form-control" placeholder="Senha" required [(ngModel)]="obj.dsSenha">
         </div>
-
+    
         <div class="form-group">
-            <label for="inputConfirmaSenha">Confirme sua Senha</label>
-            <input type="password" id="inputConfirmaSenha" class="form-control" placeholder="Confirme sua senha"
-                required>
+            <label for="inputconfirmasenha">Confirme sua Senha</label>
+            <input type="password" id="inputconfirmasenha" name="confirmasenha" class="form-control" placeholder="Confirme sua senha" required [(ngModel)]="confirmarsenha">
         </div>
-        <button type="button" class="btn btn-primary" mdbRipple (click)="save()">
+        
+        <button type="submit" class="btn btn-primary" mdbRipple>
             Salvar
-          </button>
+        </button>
     </form>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->

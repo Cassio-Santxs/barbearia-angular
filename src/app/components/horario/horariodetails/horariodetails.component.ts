@@ -25,7 +25,8 @@ export class HorariodetailsComponent {
     '',
     '',
     '',
-    ''
+    '',
+  
   );
 
   funcionarioObj: Funcionario = new Funcionario(

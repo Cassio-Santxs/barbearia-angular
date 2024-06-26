@@ -94,7 +94,7 @@ export class HorariolistComponent {
       'Nome do Cliente',
       '123.456.789-00',
       'cliente@email.com',
-      'senhaDoCliente'
+      'senhaDoCliente',
     );
   
     let funcionario: Funcionario = new Funcionario(

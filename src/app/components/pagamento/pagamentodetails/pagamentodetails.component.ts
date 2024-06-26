@@ -28,12 +28,14 @@ export class PagamentodetailsComponent {
     '',
     '',
     '',
-    ''
+    '',
+    
   );
 
   funcionarioObj: Funcionario = new Funcionario(
     0, 
     '',
+    
     true, 
     '', 
     '',

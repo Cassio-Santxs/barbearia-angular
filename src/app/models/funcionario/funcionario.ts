@@ -8,6 +8,7 @@ export class Funcionario {
     dsEmail!: string;
     dsSenha!: string;
     horarios?: Horario[];
+    role!:string;
 
     constructor(idFuncionario: number | undefined, nmFuncionario: string, flFuncionario: boolean, dsCpf: string, dsEmail: string, dsSenha: string, horarios?: Horario[]) {
         this.idFuncionario = idFuncionario;

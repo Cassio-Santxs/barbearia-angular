@@ -10,7 +10,7 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
 
   //inclui o token do localstorage em cadas requisicao http
   let token = localStorage.getItem('token');
-  if (token && !router.url.includes('/login')) {
+  if (token && !router.url.includes('/login') && !router.url.includes('/cadastro')) {
     request = request.clone({
       setHeaders: { Authorization: 'Bearer ' + token },
     });
