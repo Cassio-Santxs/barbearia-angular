@@ -12,7 +12,17 @@ export class ClienteService {
 
   API = "http://localhost:8080/api/cliente";
 
+  private idCliente: number | null = null;
+
   constructor() { }
+
+  setIdCliente(id: number) {
+    this.idCliente = id;
+  }
+
+  getIdCliente(): number | null {
+    return this.idCliente;
+  }
 
   listAll(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.API+"/listAll");
@@ -32,5 +42,9 @@ export class ClienteService {
 
   findById(id: number): Observable<Cliente> {
     return this.http.get<Cliente>(this.API+"/findById/"+id );
+  }
+
+  findByUsername(username: string): Observable<Cliente> {
+    return this.http.get<Cliente>(this.API+"/findByUsername/"+username );
   }
 }

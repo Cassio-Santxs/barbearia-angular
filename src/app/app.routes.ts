@@ -14,11 +14,16 @@ import { PagamentolistComponent } from './components/pagamento/pagamentolist/pag
 import { loginGuard } from './auth/login.guard';
 import { CadastroComponent } from './components/layout/cadastro/cadastro.component'; // Importação corrigida
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
     { path: "login", component: LoginComponent },
-    { path: "cadastro", component:CadastroComponent  }, // Rota para o CadastroComponent
+    { path: "cadastro", component: CadastroComponent  },
+    { path: "cliente", component: PerfilClienteComponent, canActivate: [loginGuard], children: [
+        { path: "perfil", component: ClientedetailsComponent },
+        { path: "horarios", component: HorariolistComponent },
+    ]}, 
     
     { path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
         { path: "dashboard", component: DashboardComponent },

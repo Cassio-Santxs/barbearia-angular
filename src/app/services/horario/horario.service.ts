@@ -34,4 +34,7 @@ export class HorarioService {
     return this.http.get<Horario>(this.API+"/findById/"+id );
   }
 
+  findByIdCliente(id: number): Observable<Horario[]> {
+    return this.http.get<Horario[]>(this.API+"/findByIdCliente/"+id );
+  }
 }

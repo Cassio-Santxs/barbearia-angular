@@ -17,6 +17,7 @@ export class CadastroService {
   save(obj: Cliente): Observable<string> {
     return this.http.post<string>(this.API+"/save", obj, {responseType: 'text' as 'json'} );
   }
+  
 
 
 

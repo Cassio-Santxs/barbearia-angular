@@ -22,7 +22,7 @@ import { LoginService } from '../../../auth/login.service';
 
 
 export class ClientedetailsComponent {
-loginService = inject (LoginService);
+  loginService = inject (LoginService);
 
   @Input("obj") obj: Cliente = new Cliente(1,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
@@ -33,7 +33,14 @@ loginService = inject (LoginService);
   service = inject(ClienteService);
 
   constructor(){
-    let id = this.router2.snapshot.params['id'];
+    const storedIdCliente = localStorage.getItem('idCliente');
+    
+    let id = 0;
+
+    if (storedIdCliente !== null) {
+      id = +storedIdCliente;
+    } 
+
     if(id > 0){
       this.findById(id);
     }
@@ -71,7 +78,12 @@ loginService = inject (LoginService);
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
+          var path = "admin/clientes"
+
+          if(this.loginService.hasPermission("cliente"))
+            path = "/perfil"
+          
+          this.router.navigate([path], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
         },
@@ -100,7 +112,13 @@ loginService = inject (LoginService);
             icon: 'success',
             confirmButtonText: 'Ok'
           });
-          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
+
+          var path = "admin/clientes"
+
+          if(this.loginService.hasPermission("cliente"))
+            path = "/perfil"
+
+          this.router.navigate([path], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 
         },

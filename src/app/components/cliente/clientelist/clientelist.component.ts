@@ -41,7 +41,6 @@ export class ClientelistComponent {
   listAll(){
       this.service.listAll().subscribe({
         next: lista => {
-          console.log('b');
           this.lista = lista;
         },
         error: erro => {

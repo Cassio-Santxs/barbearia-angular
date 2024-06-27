@@ -88,7 +88,7 @@ export class HorariodetailsComponent {
             confirmButtonText: 'Ok'
           });
 
-          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
+          this.router.navigate(['admin/horarios'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
         },
         error: erro => {
@@ -108,7 +108,7 @@ export class HorariodetailsComponent {
             confirmButtonText: 'Ok'
           });
 
-          this.router.navigate(['admin/livros'], { state: { objNovo: this.obj } });
+          this.router.navigate(['admin/horarios'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
         },
         error: erro => {

@@ -7,6 +7,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CadastroService } from '../../../services/cadastro/cadastro.service';
 import { Cliente } from '../../../models/cliente/cliente';
+import { ClienteService } from '../../../services/cliente/cliente.service';
 
 @Component({
   selector: 'app-cadastrocomponent',
@@ -23,11 +24,11 @@ export class CadastroComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private cadastroService: CadastroService
+    private cadastroService: ClienteService
   ) {
     // Certifique-se de passar o email correto do cliente para dsEmail
     this.obj = new Cliente(
-      1,
+      0,
       'Nome do Cliente',
       '123.456.789-00',
       '', // Coloque aqui o email correto do cliente

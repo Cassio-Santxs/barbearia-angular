@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { HorarioService } from '../../../services/horario/horario.service';
 import { Cliente } from '../../../models/cliente/cliente';
 import { Funcionario } from '../../../models/funcionario/funcionario';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'app-horariolist',
@@ -28,6 +29,7 @@ import { Funcionario } from '../../../models/funcionario/funcionario';
 export class HorariolistComponent {
   modalService = inject(MdbModalService); 
   service = inject(HorarioService);
+  loginService = inject(LoginService);
 
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
@@ -37,13 +39,16 @@ export class HorariolistComponent {
   objEdit!: Horario;
 
   constructor() {
-    this.listAll();
+    if(this.loginService.hasPermission("admin"))
+      this.listAll();
+    else {
+      this.listAllByCliente();
+    }
   }
 
   listAll(){
       this.service.listAll().subscribe({
         next: lista => {
-          console.log('b');
           this.lista = lista;
         },
         error: erro => {
@@ -51,6 +56,18 @@ export class HorariolistComponent {
         }
       });
   }
+
+  listAllByCliente(){
+    const storedIdCliente = localStorage.getItem('idCliente');
+    this.service.findByIdCliente(Number("0" + storedIdCliente)).subscribe({
+      next: lista => {
+        this.lista = lista;
+      },
+      error: erro => {
+        alert('Erro ao carregar listagem de registros!');
+      }
+    });
+}
 
   deleteById(obj: Horario) {
     Swal.fire({
