@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { FormaPagamento } from '../../models/formaPagamento/forma-pagamento';
 import { Observable } from 'rxjs';
 import { Form } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class FormaPagamentoService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8080/api/formaPagamento";
+  API = environment.SERVIDOR+"/api/formaPagamento";
 
   constructor() { }
 

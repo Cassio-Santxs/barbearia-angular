@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Horario } from '../../models/horario/horario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class HorarioService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8080/api/horario";
+  API = environment.SERVIDOR+"/api/horario";
 
   constructor() { }
 
