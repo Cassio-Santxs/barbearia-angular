@@ -42,7 +42,7 @@ export class FuncionariodetailsComponent {
       },
       error: erro => {
         Swal.fire({
-          title: erro.error.toString() ?? erro.message.toString(),
+          title: erro.error ? erro.error.toString()  : erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -69,7 +69,7 @@ export class FuncionariodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: erro.error.toString() ?? erro.message.toString(),
+            title: erro.error ? erro.error.toString()  : erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
@@ -93,7 +93,7 @@ export class FuncionariodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: erro.error.toString() ?? erro.message.toString(),
+            title: erro.error ? erro.error.toString()  : erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });

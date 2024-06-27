@@ -42,6 +42,7 @@ export class LoginComponent {
           this.loginService.addToken(token); //MUITO IMPORTANTE
           if(this.loginService.hasPermission("admin"))
             {
+              localStorage.setItem('idCliente', "0");
               this.router.navigate(['/admin/dashboard']);
             }
             else {
@@ -57,7 +58,7 @@ export class LoginComponent {
       },
       error: erro => {
         Swal.fire({
-          title: erro.error.toString() ?? erro.message.toString(),
+          title: erro.error ? erro.error.toString()  : erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });

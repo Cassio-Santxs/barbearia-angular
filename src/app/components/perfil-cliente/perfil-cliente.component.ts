@@ -50,7 +50,7 @@ export class PerfilClienteComponent {
       },
       error: erro => {
         Swal.fire({
-          title: erro.error.toString() ?? erro.message.toString(),
+          title: erro.error ? erro.error.toString()  : erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
