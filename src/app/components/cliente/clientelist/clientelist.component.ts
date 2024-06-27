@@ -82,7 +82,7 @@ export class ClientelistComponent {
   }
 
   new() {
-    this.objEdit = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente',);
+    this.objEdit = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','123',);
     this.modalRef = this.modalService.open(this.modalDetalhe);
   }
 

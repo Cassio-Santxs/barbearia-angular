@@ -15,56 +15,76 @@
         body {
             background-color: #f8f9fa;
             padding-top: 40px;
+            font-family: Arial, sans-serif;
         }
 
         .form-signin {
-            max-width: 380px;
+            max-width: 400px;
             padding: 15px;
             margin: auto;
             background-color: #fff;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Ajustes para o formulário */
+        .form-signin h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
         .form-signin .form-group {
-            margin-bottom: 20px; /* Aumenta a distância entre os elementos do formulário */
+            margin-bottom: 20px;
+        }
+
+        .form-signin .form-control {
+            height: calc(2.25rem + 2px);
+            padding: 10px;
+            font-size: 1rem;
         }
 
         .form-signin button.btn-primary {
-            font-size: 16px; /* Reduz o tamanho da fonte do botão */
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        .form-signin button.btn-primary i {
+            margin-right: 5px;
+        }
+
+        .form-signin .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
         }
     </style>
 </head>
 
 <body>
     <form class="form-signin" (ngSubmit)="save()">
-        <h1 class="h3 mb-3 font-weight-normal text-center">Cadastra-se</h1>
-    
-       
-    
+        <h1 class="h3 mb-3 font-weight-normal text-center">Cadastre-se</h1>
+
         <div class="form-group">
             <label for="nmCliente">Nome</label>
-            <input id="nmCliente" name="nmCliente" type="text" class="form-control" [(ngModel)]="obj.nmCliente">
+            <input id="nmCliente" name="nmCliente" type="text" class="form-control" [(ngModel)]="obj.nmCliente" required>
         </div>
-    
+
         <div class="form-group">
             <label for="inputEmail">Email</label>
             <input type="email" id="inputEmail" name="dsEmail" class="form-control" placeholder="Seu email" required [(ngModel)]="obj.dsEmail">
         </div>
-    
+
         <div class="form-group">
             <label for="inputSenha">Senha</label>
             <input type="password" id="inputSenha" name="dsSenha" class="form-control" placeholder="Senha" required [(ngModel)]="obj.dsSenha">
         </div>
-    
+
         <div class="form-group">
             <label for="inputconfirmasenha">Confirme sua Senha</label>
             <input type="password" id="inputconfirmasenha" name="confirmasenha" class="form-control" placeholder="Confirme sua senha" required [(ngModel)]="confirmarsenha">
         </div>
-        
-        <button type="submit" class="btn btn-primary" mdbRipple>
-            Salvar
+
+        <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-save"></i> Salvar
         </button>
     </form>
 

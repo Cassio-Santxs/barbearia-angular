@@ -1,5 +1,5 @@
 import { Horario } from "../horario/horario";
-
+// parte usada como espelho do back end utilizado para armanezenar no banco de dados
 export class Cadastro {
     idCliente?: number;
     nmCliente!: string;

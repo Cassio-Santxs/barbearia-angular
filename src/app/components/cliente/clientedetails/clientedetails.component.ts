@@ -24,7 +24,7 @@ import { LoginService } from '../../../auth/login.service';
 export class ClientedetailsComponent {
   loginService = inject (LoginService);
 
-  @Input("obj") obj: Cliente = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
+  @Input("obj") obj: Cliente = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','123');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   id: number = 0;
