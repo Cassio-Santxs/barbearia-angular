@@ -57,7 +57,7 @@ export class LoginComponent {
       },
       error: erro => {
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });

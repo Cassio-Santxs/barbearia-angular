@@ -70,12 +70,8 @@ export class ClientelistComponent {
             this.listAll();
           },
           error: erro => {
-  
-            alert(erro.status);
-            console.log(erro);
-           
             Swal.fire({
-              title: 'ERRO!',
+              title: erro.error.toString() ?? erro.message.toString(),
               icon: 'error',
               confirmButtonText: 'Ok'
             });

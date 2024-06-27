@@ -51,9 +51,8 @@ export class CadastroComponent {
         this.router.navigate(['/login'], { state: { objNovo: this.obj } });
       },
       error: erro => {
-        console.error('Erro ao salvar:', erro);
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });

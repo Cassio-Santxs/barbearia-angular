@@ -24,9 +24,10 @@ import { LoginService } from '../../../auth/login.service';
 export class ClientedetailsComponent {
   loginService = inject (LoginService);
 
-  @Input("obj") obj: Cliente = new Cliente(1,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
+  @Input("obj") obj: Cliente = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','senhaDoCliente');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
+  id: number = 0;
   router2 = inject(ActivatedRoute);
   router = inject(Router);
 
@@ -35,14 +36,14 @@ export class ClientedetailsComponent {
   constructor(){
     const storedIdCliente = localStorage.getItem('idCliente');
     
-    let id = 0;
-
-    if (storedIdCliente !== null) {
-      id = +storedIdCliente;
+    this.id = this.router2.snapshot.params['id'];
+    
+    if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
+      this.id = +storedIdCliente;
     } 
 
-    if(id > 0){
-      this.findById(id);
+    if(this.id > 0){
+      this.findById(this.id);
     }
   }
 
@@ -54,10 +55,8 @@ export class ClientedetailsComponent {
         this.obj = data;
       },
       error: erro => {
-        alert(erro.status);
-        console.log(erro);
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -88,16 +87,11 @@ export class ClientedetailsComponent {
     
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
 
@@ -123,16 +117,11 @@ export class ClientedetailsComponent {
 
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
     }

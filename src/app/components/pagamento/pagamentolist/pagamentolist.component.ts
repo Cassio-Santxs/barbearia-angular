@@ -66,7 +66,7 @@ listaPagamentos: any;
   }
   new() {
     let cliente: Cliente = new Cliente(
-      1,
+      0,
       'Nome do Cliente',
       '123.456.789-00',
       'cliente@email.com',
@@ -75,7 +75,7 @@ listaPagamentos: any;
     );
   
     let funcionario: Funcionario = new Funcionario(
-      1, 
+      0, 
       'Nome do Funcionário',
       true, 
       '123.456.789-00', 

@@ -10,6 +10,7 @@ import { Funcionario } from '../../../models/funcionario/funcionario';
 import { Cliente } from '../../../models/cliente/cliente';
 import { ClienteService } from '../../../services/cliente/cliente.service';
 import { FuncionarioService } from '../../../services/funcionario/funcionario.service';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'app-horariodetails',
@@ -48,6 +49,7 @@ export class HorariodetailsComponent {
   router = inject(Router);
 
   service = inject(HorarioService);
+  loginService = inject(LoginService);
   clienteService = inject(ClienteService);
   funcionaroService = inject(FuncionarioService);
 
@@ -69,7 +71,7 @@ export class HorariodetailsComponent {
       },
       error: erro => {
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -93,7 +95,7 @@ export class HorariodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
@@ -113,7 +115,7 @@ export class HorariodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
@@ -126,9 +128,22 @@ export class HorariodetailsComponent {
     this.clienteService.listAll().subscribe({
       next: lista => {
         this.clienteList = lista;
+        const storedIdCliente = localStorage.getItem('idCliente');
+
+        if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
+          this.clienteList = this.clienteList.filter(x => x.idCliente == Number(storedIdCliente));
+
+          this.clienteObj = this.clienteList[0];
+
+          this.obj.cliente = this.clienteObj;
+        } 
       },
       error: erro => {
-        alert('Erro ao carregar listagem de registros!');
+        Swal.fire({
+          title: erro.error.toString() ?? erro.message.toString(),
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
       }
     });
   }
@@ -139,7 +154,11 @@ export class HorariodetailsComponent {
         this.funcionarioList = lista;
       },
       error: erro => {
-        alert('Erro ao carregar listagem de registros!');
+        Swal.fire({
+          title: erro.error.toString() ?? erro.message.toString(),
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
       }
     });
   }

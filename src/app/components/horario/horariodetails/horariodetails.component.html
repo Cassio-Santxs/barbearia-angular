@@ -44,10 +44,10 @@
                   class="form-control"
                   [(ngModel)]="obj.funcionario"
                 >
-                  <option [value]="null">Selecione</option>
+                  <option [ngValue]="null">Selecione</option>
                   <option
                     *ngFor="let funcionario of funcionarioList"
-                    [value]="funcionario"
+                    [ngValue]="funcionario"
                   >
                     {{ funcionario.idFuncionario }} -
                     {{ funcionario.nmFuncionario }}
@@ -60,7 +60,7 @@
             </div>
           </div>
 
-          <div class="row my-4">
+          <div *ngIf="loginService.hasPermission('admin')" class="row my-4">
             <div class="col-lg-12 col-xs-12">
               <mdb-form-control>
                 <select

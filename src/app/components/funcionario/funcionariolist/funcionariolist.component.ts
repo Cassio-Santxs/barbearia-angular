@@ -47,7 +47,7 @@ export class FuncionariolistComponent {
   }
 
   novo(){
-    this.funcionarioEdit = new Funcionario(0, 'Nome do Funcionário', true, '123.456.789-00', 'funcionario@email.com','senhaDoFuncionario');
+    this.funcionarioEdit = new Funcionario(0, 'Nome do Funcionário', true, '123.456.789-00', 'funcionario@email.com','123');
     this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
 
@@ -77,12 +77,8 @@ export class FuncionariolistComponent {
             this.findAll();
           },
           error: erro => {
-  
-            alert(erro.status);
-            console.log(erro);
-           
             Swal.fire({
-              title: 'ERRO!',
+              title: erro.error.toString() ?? erro.message.toString(),
               icon: 'error',
               confirmButtonText: 'Ok'
             });

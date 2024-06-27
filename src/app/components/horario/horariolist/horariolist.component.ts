@@ -90,12 +90,8 @@ export class HorariolistComponent {
             this.listAll();
           },
           error: erro => {
-  
-            alert(erro.status);
-            console.log(erro);
-           
             Swal.fire({
-              title: 'ERRO!',
+              title: erro.error.toString() ?? erro.message.toString(),
               icon: 'error',
               confirmButtonText: 'Ok'
             });
@@ -107,7 +103,7 @@ export class HorariolistComponent {
 
   new() {
     let cliente: Cliente = new Cliente(
-      1,
+      0,
       'Nome do Cliente',
       '123.456.789-00',
       'cliente@email.com',
@@ -115,7 +111,7 @@ export class HorariolistComponent {
     );
   
     let funcionario: Funcionario = new Funcionario(
-      1, 
+      0, 
       'Nome do Funcionário',
       true, 
       '123.456.789-00', 

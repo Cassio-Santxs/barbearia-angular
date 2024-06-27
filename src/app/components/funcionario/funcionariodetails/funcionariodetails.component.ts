@@ -18,7 +18,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
   styleUrl: './funcionariodetails.component.scss'
 })
 export class FuncionariodetailsComponent {
-  @Input("obj") obj: Funcionario = new Funcionario(1,'Nome do funcionario', true, '123.456.789-00','funcionario@email.com','senhaDoFuncionario');
+  @Input("obj") obj: Funcionario = new Funcionario(1,'Nome do funcionario', true, '123.456.789-00','funcionario@email.com','123');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   router2 = inject(ActivatedRoute);
@@ -41,10 +41,8 @@ export class FuncionariodetailsComponent {
         this.obj = data;
       },
       error: erro => {
-        alert(erro.status);
-        console.log(erro);
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -70,16 +68,11 @@ export class FuncionariodetailsComponent {
     
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
 
@@ -99,16 +92,11 @@ export class FuncionariodetailsComponent {
 
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
     }

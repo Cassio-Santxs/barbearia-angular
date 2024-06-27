@@ -39,10 +39,8 @@ export class FormaPagamentodetailsComponent {
         this.obj = data;
       },
       error: erro => {
-        alert(erro.status);
-        console.log(erro);
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -69,16 +67,11 @@ export class FormaPagamentodetailsComponent {
     
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
 
@@ -98,16 +91,11 @@ export class FormaPagamentodetailsComponent {
 
         },
         error: erro => {
-
-          alert(erro.status);
-          console.log(erro);
-         
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
-
         }
       } );
     }

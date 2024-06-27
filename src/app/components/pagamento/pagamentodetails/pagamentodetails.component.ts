@@ -76,7 +76,7 @@ export class PagamentodetailsComponent {
       },
       error: erro => {
         Swal.fire({
-          title: 'Deu algum erro!',
+          title: erro.error.toString() ?? erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
@@ -99,7 +99,7 @@ export class PagamentodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
@@ -119,7 +119,7 @@ export class PagamentodetailsComponent {
         },
         error: erro => {
           Swal.fire({
-            title: 'Deu algum erro!',
+            title: erro.error.toString() ?? erro.message.toString(),
             icon: 'error',
             confirmButtonText: 'Ok'
           });
