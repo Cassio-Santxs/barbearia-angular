@@ -34,7 +34,6 @@ export class PagamentolistComponent {
 
   lista: Pagamento[] = [];
   objEdit!: Pagamento;
-listaPagamentos: any;
 
   constructor() {
     this.listAll();
