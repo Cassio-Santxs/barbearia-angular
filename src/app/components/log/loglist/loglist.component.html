@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+
+          <div class="row mb-3">
+            <div class="col-lg-6 text-start">
+                <h3>Logs de Auditoria</h3>
+            </div>
+ 
+            <div class="col-lg-6 text-end">
+                <button (click)="novo()" class="btn btn-success">
+                    <i class="fa fa-plus fa-1x"><span style="padding-left: 8px;">Novo</span></i>
+                </button>
+            </div>
+         </div>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">E-mail Usuário</th>
+                    <th scope="col">Tabela</th>
+                    <th scope="col">Valor Antigo</th>
+                    <th scope="col">Valor Novo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                   @for (log of lista; track $index){
+                    <tr>
+                        <td>{{log.idLog}}</td>
+                        <td>{{log.dsEmailUsuario}}</td>
+                        <td>{{log.dsTabela}}</td>
+                        <td>{{log.vlAntigo}}</td>
+                        <td>{{log.vlNovo}}</td>
+                        <td>{{log.dtAlteracao}}</td>
+            
+                        <td>
+                          <div class="row">
+                             <div class="col-lg-12 text-end">
+                                 <button (click)="editar(log)" class="btn btn-success">
+                                     <i class="fa fa-pen fa-1x"></i>
+                                 </button>
+                
+                                <button (click)="deleteById(log)" class="btn btn-danger ms-2">
+                                  <i class="fa fa-trash-can fa-1x"></i>
+                                </button>
+                             </div>
+                          </div>
+                        </td>
+                    </tr>
+                   }
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #modalDetalhe>
+  <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cadastro de Funcionários</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef.close()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <app-log-details [obj]="logEdit" (retorno)="retornoDetalhe($event)"> </app-log-details>
+    </div>
+  </ng-template>
+
+

@@ -11,6 +11,7 @@
         <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/funcionario">Funcionários</a>
         <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/pagamento">Pagamentos</a>
         <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/formaPagamento">Formas Pagamento</a>
+        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/log">Logs de Auditoria</a>
 
         <a *ngIf="loginService.hasPermission('cliente')" class="nav-link" href="cliente/perfil">Perfil</a>
         <a *ngIf="loginService.hasPermission('cliente')" class="nav-link" href="cliente/horarios">Horários Cadastrados</a>

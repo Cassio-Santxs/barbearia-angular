@@ -15,6 +15,8 @@ import { loginGuard } from './auth/login.guard';
 import { CadastroComponent } from './components/layout/cadastro/cadastro.component'; // Importação corrigida
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilClienteComponent } from './components/perfil-cliente/perfil-cliente.component';
+import { LogdetailsComponent } from './components/log/logdetails/logdetails.component';
+import { LoglistComponent } from './components/log/loglist/loglist.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full' },
@@ -47,5 +49,9 @@ export const routes: Routes = [
         { path: "pagamento", component: PagamentolistComponent },
         { path: "pagamento/new", component: PagamentodetailsComponent },
         { path: "pagamento/edit/:id", component: PagamentodetailsComponent },
+
+        { path: "log", component: LoglistComponent },
+        { path: "log/new", component: LogdetailsComponent },
+        { path: "log/edit/:id", component: LogdetailsComponent },
     ]}
 ];
