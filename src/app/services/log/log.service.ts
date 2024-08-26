@@ -39,7 +39,7 @@ export class LogService {
 
   compareAndLogDifferences<T>(mainObject: T, auxiliaryObject: T, dsTabela: string, dsEmailUsuario: string): Observable<string> {
     const logs: Log[] = [];
-    const dtAlteracao = new Date().toISOString();
+    const dtAlteracao = new Date().toString();
   
     for (const key in mainObject) {
       if (Object.prototype.hasOwnProperty.call(mainObject, key) && 

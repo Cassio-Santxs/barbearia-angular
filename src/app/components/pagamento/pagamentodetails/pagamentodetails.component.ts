@@ -12,6 +12,7 @@ import { PagamentoService } from '../../../services/pagamento/pagamento.service'
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LogService } from '../../../services/log/log.service';
 @Component({
   selector: 'app-pagamentodetails',
   standalone: true,
@@ -46,6 +47,7 @@ export class PagamentodetailsComponent {
 
   formaPagamentoObj: FormaPagamento = new FormaPagamento(0,'Nome do Cliente'); 
   @Input("obj") obj: Pagamento = new Pagamento(0, "",this.horarioObj, this.formaPagamentoObj, "");
+  @Input("objAux") objAux: Pagamento = new Pagamento(0, "",this.horarioObj, this.formaPagamentoObj, "");
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   formaPagamentoList: FormaPagamento[] = [];
@@ -57,7 +59,7 @@ export class PagamentodetailsComponent {
   service = inject(PagamentoService);
   formaPagamentoService = inject(FormaPagamentoService);
   horarioService = inject(HorarioService);
-
+  logservice = inject(LogService);
   constructor(){
     this.listAllFormaPagamento();
     this.listAllHorario();
@@ -68,7 +70,9 @@ export class PagamentodetailsComponent {
       this.findById(id);
     }
   }
-
+  ngOnInit(): void {
+    this.objAux = structuredClone(this.obj);
+  }
    findById(id: number){
     this.service.findById(id).subscribe({
       next: data => {
@@ -94,6 +98,19 @@ export class PagamentodetailsComponent {
             confirmButtonText: 'Ok'
           });
 
+          if (this.obj.idPagamento) {
+            this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'pagamento', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID é inválido ou não encontrado.');
+          }
+
           this.router.navigate(['admin/pagamento'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
         },
@@ -112,6 +129,15 @@ export class PagamentodetailsComponent {
             title: 'Salvo com sucesso!',
             icon: 'success',
             confirmButtonText: 'Ok'
+          });
+
+          this.logservice.logInsertOperation(0, 'pagamento', 'funcionario@hotmail.com').subscribe({
+            next: retorno => {
+              console.log('Log salvo com sucesso:', retorno);
+            },
+            error: erro => {
+              console.log('Erro ao registrar log de deleção:', erro);
+            }
           });
 
           this.router.navigate(['admin/pagamento'], { state: { objNovo: this.obj } });

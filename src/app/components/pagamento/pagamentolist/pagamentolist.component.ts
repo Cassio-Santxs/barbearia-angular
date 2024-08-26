@@ -10,6 +10,7 @@ import { Cliente } from '../../../models/cliente/cliente';
 import { Funcionario } from '../../../models/funcionario/funcionario';
 import { Horario } from '../../../models/horario/horario';
 import { FormaPagamento } from '../../../models/formaPagamento/forma-pagamento';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-pagamentolist',
@@ -27,7 +28,7 @@ import { FormaPagamento } from '../../../models/formaPagamento/forma-pagamento';
 export class PagamentolistComponent {
   modalService = inject(MdbModalService); 
   pagamentoService = inject(PagamentoService);
-
+  logservice = inject(LogService);
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
@@ -55,6 +56,18 @@ export class PagamentolistComponent {
       this.pagamentoService.delete(obj.idPagamento).subscribe({
         next: retorno => {
           console.log('Deletado com sucesso!', retorno);
+          if (obj.idPagamento) {
+            this.logservice.logDeleteOperation(obj.idPagamento, 'pagamento', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID é inválido ou não encontrado.');
+          }
           this.listAll();
         },
         error: erro => {

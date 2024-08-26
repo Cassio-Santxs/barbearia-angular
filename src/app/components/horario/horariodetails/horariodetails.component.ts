@@ -11,6 +11,7 @@ import { Cliente } from '../../../models/cliente/cliente';
 import { ClienteService } from '../../../services/cliente/cliente.service';
 import { FuncionarioService } from '../../../services/funcionario/funcionario.service';
 import { LoginService } from '../../../auth/login.service';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-horariodetails',
@@ -40,6 +41,7 @@ export class HorariodetailsComponent {
   );
 
   @Input("obj") obj: Horario = new Horario(0, "", this.clienteObj, this.funcionarioObj, 20.00);
+  @Input("objAux") objAux: Horario = new Horario(0, "", this.clienteObj, this.funcionarioObj, 20.00);
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   funcionarioList: Funcionario[] = [];
@@ -52,7 +54,7 @@ export class HorariodetailsComponent {
   loginService = inject(LoginService);
   clienteService = inject(ClienteService);
   funcionaroService = inject(FuncionarioService);
-
+  logservice = inject(LogService);
   constructor(){
     this.listAllClientes();
     this.listAllFuncionarios();
@@ -63,7 +65,9 @@ export class HorariodetailsComponent {
       this.findById(id);
     }
   }
-
+  ngOnInit(): void {
+    this.objAux = structuredClone(this.obj);
+  }
    findById(id: number){
     this.service.findById(id).subscribe({
       next: data => {
@@ -89,6 +93,20 @@ export class HorariodetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
+          
+          if (this.obj.idHorario) {
+            this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'horario', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID é inválido ou não encontrado.');
+          }
+
 
           this.router.navigate(['admin/horarios'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
@@ -108,6 +126,15 @@ export class HorariodetailsComponent {
             title: 'Salvo com sucesso!',
             icon: 'success',
             confirmButtonText: 'Ok'
+          });
+
+          this.logservice.logInsertOperation(0, 'horario', 'funcionario@hotmail.com').subscribe({
+            next: retorno => {
+              console.log('Log salvo com sucesso:', retorno);
+            },
+            error: erro => {
+              console.log('Erro ao registrar log de deleção:', erro);
+            }
           });
 
           this.router.navigate(['admin/horarios'], { state: { objNovo: this.obj } });

@@ -11,6 +11,7 @@ import { HorarioService } from '../../../services/horario/horario.service';
 import { Cliente } from '../../../models/cliente/cliente';
 import { Funcionario } from '../../../models/funcionario/funcionario';
 import { LoginService } from '../../../auth/login.service';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-horariolist',
@@ -30,7 +31,7 @@ export class HorariolistComponent {
   modalService = inject(MdbModalService); 
   service = inject(HorarioService);
   loginService = inject(LoginService);
-
+  logservice = inject(LogService);
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
@@ -87,6 +88,20 @@ export class HorariolistComponent {
               icon: 'success',
               confirmButtonText: 'Ok'
             });
+
+            if (obj.idHorario) {
+              this.logservice.logDeleteOperation(obj.idHorario, 'horario', 'funcionario@hotmail.com').subscribe({
+                next: retorno => {
+                  console.log('Log salvo com sucesso:', retorno);
+                },
+                error: erro => {
+                  console.log('Erro ao registrar log de deleção:', erro);
+                }
+              });
+            } else {
+              console.log('ID é inválido ou não encontrado.');
+            }
+
             this.listAll();
           },
           error: erro => {

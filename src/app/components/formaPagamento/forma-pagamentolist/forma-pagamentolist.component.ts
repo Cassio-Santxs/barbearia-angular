@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-forma-pagamentolist',
@@ -25,7 +26,7 @@ export class FormaPagamentolistComponent {
 
   modalService = inject(MdbModalService); 
   service = inject(FormaPagamentoService);
-
+  logservice = inject(LogService);
   @ViewChild('modalDetalhe') modalDetalhe!: TemplateRef<any>; 
 
   modalRef!: MdbModalRef<any>; 
@@ -68,6 +69,20 @@ export class FormaPagamentolistComponent {
               icon: 'success',
               confirmButtonText: 'Ok'
             });
+
+            if (obj.idFormaPagto) {
+              this.logservice.logDeleteOperation(obj.idFormaPagto, 'forma_pagamento', 'funcionario@hotmail.com').subscribe({
+                next: retorno => {
+                  console.log('Log salvo com sucesso:', retorno);
+                },
+                error: erro => {
+                  console.log('Erro ao registrar log de deleção:', erro);
+                }
+              });
+            } else {
+              console.log('ID é inválido ou não encontrado.');
+            }
+
             this.listAll();
           },
           error: erro => {

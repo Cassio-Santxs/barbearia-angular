@@ -9,6 +9,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import Swal from 'sweetalert2';
 import { FuncionarioService } from '../../../services/funcionario/funcionario.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-funcionariodetails',
@@ -19,20 +20,23 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 })
 export class FuncionariodetailsComponent {
   @Input("obj") obj: Funcionario = new Funcionario(1,'Nome do funcionario', true, '123.456.789-00','funcionario@email.com','123');
+  @Input("objAux") objAux: Funcionario = new Funcionario(1,'Nome do funcionario', true, '123.456.789-00','funcionario@email.com','123');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   router2 = inject(ActivatedRoute);
   router = inject(Router);
 
   service = inject(FuncionarioService);
-
+  logservice = inject(LogService);
   constructor(){
     let id = this.router2.snapshot.params['id'];
     if(id > 0){
       this.findById(id);
     }
   }
-
+  ngOnInit(): void {
+    this.objAux = structuredClone(this.obj);
+  }
    findById(id: number){
 
 
@@ -63,6 +67,20 @@ export class FuncionariodetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
+
+          if (this.obj.idFuncionario) {
+            this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'funcionario', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID é inválido ou não encontrado.');
+          }
+
           this.router.navigate(['admin/funcionario'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
@@ -87,6 +105,16 @@ export class FuncionariodetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
+
+          this.logservice.logInsertOperation(0, 'funcionario', 'funcionario@hotmail.com').subscribe({
+            next: retorno => {
+              console.log('Log salvo com sucesso:', retorno);
+            },
+            error: erro => {
+              console.log('Erro ao registrar log de deleção:', erro);
+            }
+          });
+
           this.router.navigate(['admin/funcionario'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 

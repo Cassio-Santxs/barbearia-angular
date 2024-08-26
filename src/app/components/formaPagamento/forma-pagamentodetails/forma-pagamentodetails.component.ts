@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-forma-pagamentodetails',
@@ -16,19 +17,24 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 })
 export class FormaPagamentodetailsComponent {
 
-  @Input("obj") obj: FormaPagamento = new FormaPagamento(1,'Nome do Cliente');
+  @Input("obj") obj: FormaPagamento = new FormaPagamento(0,'');
+  @Input("objAux") objAux: FormaPagamento = new FormaPagamento(0,'');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   router2 = inject(ActivatedRoute);
   router = inject(Router);
 
   service = inject(FormaPagamentoService);
-
+  logservice = inject(LogService);
   constructor(){
     let id = this.router2.snapshot.params['id'];
     if(id > 0){
       this.findById(id);
     }
+  }
+
+  ngOnInit(): void {
+    this.objAux = structuredClone(this.obj);
   }
 
    findById(id: number){
@@ -62,6 +68,20 @@ export class FormaPagamentodetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
+
+          if (this.obj.idFormaPagto) {
+            this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'forma_pagamento', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID é inválido ou não encontrado.');
+          }
+
           this.router.navigate(['admin/formaPagamento'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
@@ -86,6 +106,16 @@ export class FormaPagamentodetailsComponent {
             icon: 'success',
             confirmButtonText: 'Ok'
           });
+
+          this.logservice.logInsertOperation(0, 'forma_pagamento', 'funcionario@hotmail.com').subscribe({
+            next: retorno => {
+              console.log('Log salvo com sucesso:', retorno);
+            },
+            error: erro => {
+              console.log('Erro ao registrar log de deleção:', erro);
+            }
+          });
+
           this.router.navigate(['admin/formaPagamento'], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
 

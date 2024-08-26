@@ -51,7 +51,7 @@ export class ClientedetailsComponent {
       this.findById(this.id);
     }
   }
-  
+
   ngOnInit(): void {
     this.objAux = structuredClone(this.obj);
   }
@@ -134,18 +134,14 @@ export class ClientedetailsComponent {
           if(this.loginService.hasPermission("cliente"))
             path = "/perfil"
 
-          if (this.obj.idCliente) {
-            this.logservice.logInsertOperation(this.obj.idCliente, 'cliente', 'funcionario@hotmail.com').subscribe({
-              next: retorno => {
-                console.log('Log salvo com sucesso:', retorno);
-              },
-              error: erro => {
-                console.log('Erro ao registrar log de deleção:', erro);
-              }
-            });
-          } else {
-            console.log('ID do cliente é inválido ou não encontrado.');
-          }
+          this.logservice.logInsertOperation(0, 'cliente', 'funcionario@hotmail.com').subscribe({
+            next: retorno => {
+              console.log('Log salvo com sucesso:', retorno);
+            },
+            error: erro => {
+              console.log('Erro ao registrar log de deleção:', erro);
+            }
+          });
 
           this.router.navigate([path], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
