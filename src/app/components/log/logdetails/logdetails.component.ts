@@ -16,7 +16,7 @@ import { Log } from '../../../models/log/log';
   styleUrl: './logdetails.component.scss'
 })
 export class LogdetailsComponent {
-  @Input("obj") obj: Log = new Log(0, '', '', '', '', '');
+  @Input("obj") obj: Log = new Log(0, '', '', '', '', '', '');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   router2 = inject(ActivatedRoute);

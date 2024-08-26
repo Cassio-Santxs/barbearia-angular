@@ -10,6 +10,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { from } from 'rxjs';
 import { LoginService } from '../../../auth/login.service';
+import { LogService } from '../../../services/log/log.service';
 
 @Component({
   selector: 'app-clientedetails',
@@ -22,9 +23,12 @@ import { LoginService } from '../../../auth/login.service';
 
 
 export class ClientedetailsComponent {
+  
+
   loginService = inject (LoginService);
 
-  @Input("obj") obj: Cliente = new Cliente(0,'Nome do Cliente','123.456.789-00','cliente@email.com','123');
+  @Input("obj") obj: Cliente = new Cliente(0,'','','','');
+  @Input("objAux") objAux: Cliente = new Cliente(0,'','','','');
   @Output("retorno") retorno: EventEmitter<any> = new EventEmitter();
 
   id: number = 0;
@@ -32,6 +36,7 @@ export class ClientedetailsComponent {
   router = inject(Router);
 
   service = inject(ClienteService);
+  logservice = inject(LogService);
 
   constructor(){
     const storedIdCliente = localStorage.getItem('idCliente');
@@ -45,6 +50,10 @@ export class ClientedetailsComponent {
     if(this.id > 0){
       this.findById(this.id);
     }
+  }
+  
+  ngOnInit(): void {
+    this.objAux = structuredClone(this.obj);
   }
 
    findById(id: number){
@@ -82,6 +91,19 @@ export class ClientedetailsComponent {
           if(this.loginService.hasPermission("cliente"))
             path = "/perfil"
           
+          if (this.obj.idCliente) {
+            this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'cliente', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID do cliente é inválido ou não encontrado.');
+          }
+
           this.router.navigate([path], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);
     
@@ -111,6 +133,19 @@ export class ClientedetailsComponent {
 
           if(this.loginService.hasPermission("cliente"))
             path = "/perfil"
+
+          if (this.obj.idCliente) {
+            this.logservice.logInsertOperation(this.obj.idCliente, 'cliente', 'funcionario@hotmail.com').subscribe({
+              next: retorno => {
+                console.log('Log salvo com sucesso:', retorno);
+              },
+              error: erro => {
+                console.log('Erro ao registrar log de deleção:', erro);
+              }
+            });
+          } else {
+            console.log('ID do cliente é inválido ou não encontrado.');
+          }
 
           this.router.navigate([path], { state: { objNovo: this.obj } });
           this.retorno.emit(this.obj);

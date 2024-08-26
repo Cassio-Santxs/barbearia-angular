@@ -45,7 +45,7 @@ export class LoglistComponent {
   }
 
   novo(){
-    this.logEdit = new Log(0, '', '', '', '', '');
+    this.logEdit = new Log(0, '', '', '', '', '', '');
     this.modalRef = this.modalservice.open(this.modalDetalhe);
   }
 
