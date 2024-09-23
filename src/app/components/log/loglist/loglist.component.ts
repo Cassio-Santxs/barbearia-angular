@@ -24,7 +24,17 @@ export class LoglistComponent {
 
   modalRef!: MdbModalRef<any>;
 
+  filtro = {
+    id: '',
+    dataInicial: '',
+    dataFinal: '',
+    valorAntigo: '',
+    valorNovo: '',
+    email: ''
+  };
+
   lista:Log[] = []
+  listaAux:Log[] = []
   logEdit!: Log;
 
   LogService = inject(LogService);
@@ -33,10 +43,24 @@ export class LoglistComponent {
     this.findAll();
   }
 
+  applyFilter() {
+    console.log("teste");
+    this.lista = this.listaAux.filter(log => {
+      const filtroId = this.filtro.id ? log.idLog === +this.filtro.id : true;
+      const filtroDataInicial = this.filtro.dataInicial ? new Date(log.dtAlteracao) >= new Date(this.filtro.dataInicial) : true;
+      const filtroDataFinal = this.filtro.dataFinal ? new Date(log.dtAlteracao) <= new Date(this.filtro.dataFinal) : true;
+      const filtroValorAntigo = this.filtro.valorAntigo ? log.vlAntigo.includes(this.filtro.valorAntigo) : true;
+      const filtroValorNovo = this.filtro.valorNovo ? log.vlNovo.includes(this.filtro.valorNovo) : true;
+      const filtroEmail = this.filtro.email ? log.dsEmailUsuario.includes(this.filtro.email) : true;
+      return filtroId && filtroDataInicial && filtroDataFinal && filtroValorAntigo && filtroValorNovo && filtroEmail;
+    });
+  }
+
   findAll(){
     this.LogService.findAll().subscribe({
       next: lista => {
         this.lista = lista;
+        this.listaAux = lista;
       },error: erro => {
         
         alert("ocorreu um erro");
