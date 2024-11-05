@@ -23,7 +23,20 @@ export class LoginService {
   }
 
   addToken(token: string) {
-    localStorage.setItem('token', token);
+    try{
+      const Objeto = JSON.parse(token);
+      const clean_token = Objeto.access_token;
+      localStorage.setItem('token', token);
+
+      if(clean_token){
+        localStorage.setItem('token', clean_token);
+      }else{
+        console.error('erro', Objeto);
+      }
+
+    }catch(error){
+      console.error('erro', error);
+    }
   }
 
   removerToken() {
@@ -33,6 +46,7 @@ export class LoginService {
   getToken() {
     return localStorage.getItem('token');
   }
+
 
   jwtDecode() {
     let token = this.getToken();

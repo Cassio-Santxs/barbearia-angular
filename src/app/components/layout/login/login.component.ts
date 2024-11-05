@@ -42,11 +42,11 @@ export class LoginComponent {
           this.loginService.addToken(token); //MUITO IMPORTANTE
           if(this.loginService.hasPermission("admin"))
             {
-              localStorage.setItem('idCliente', "0");
+              localStorage.setItem('idCliente', "10");
               this.router.navigate(['/admin/dashboard']);
             }
             else {
-              localStorage.setItem('idCliente', this.cliente.idCliente != null ? this.cliente.idCliente.toString() : "0");
+              localStorage.setItem('idCliente', this.cliente?.idCliente != null ? this.cliente?.idCliente.toString() : "10");
               this.router.navigate(['/cliente/perfil']);
             }
           },
