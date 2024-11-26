@@ -39,17 +39,17 @@ export class ClientedetailsComponent {
   logservice = inject(LogService);
 
   constructor(){
-    const storedIdCliente = localStorage.getItem('idCliente');
+    //const storedIdCliente = localStorage.getItem('idCliente');
     
-    this.id = this.router2.snapshot.params['id'];
+    this.id = 10 //this.router2.snapshot.params['id'];
     
-    if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
-      this.id = +storedIdCliente;
-    } 
+    // if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
+    //   this.id = +storedIdCliente;
+    // } 
 
-    if(this.id > 0){
-      this.findById(this.id);
-    }
+    // if(this.id > 0){
+    //   this.findById(this.id);
+    // }
   }
 
   ngOnInit(): void {
@@ -88,8 +88,8 @@ export class ClientedetailsComponent {
           });
           var path = "admin/clientes"
 
-          if(this.loginService.hasPermission("cliente"))
-            path = "/perfil"
+          // if(this.loginService.hasPermission("cliente"))
+          //   path = "/perfil"
           
           if (this.obj.idCliente) {
             this.logservice.compareAndLogDifferences(this.obj, this.objAux, 'cliente', 'funcionario@hotmail.com').subscribe({
@@ -131,8 +131,8 @@ export class ClientedetailsComponent {
 
           var path = "admin/clientes"
 
-          if(this.loginService.hasPermission("cliente"))
-            path = "/perfil"
+          // if(this.loginService.hasPermission("cliente"))
+          //   path = "/perfil"
 
           this.logservice.logInsertOperation(0, 'cliente', 'funcionario@hotmail.com').subscribe({
             next: retorno => {

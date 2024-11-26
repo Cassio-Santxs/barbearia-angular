@@ -5,16 +5,16 @@
     ></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/dashboard">Home</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/horarios">Horários</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/clientes">Clientes</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/funcionario">Funcionários</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/pagamento">Pagamentos</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/formaPagamento">Formas Pagamento</a>
-        <a *ngIf="loginService.hasPermission('admin')" class="nav-link" href="admin/log">Logs de Auditoria</a>
+        <a class="nav-link" href="admin/dashboard">Home</a>
+        <a class="nav-link" href="admin/horarios">Horários</a>
+        <a class="nav-link" href="admin/clientes">Clientes</a>
+        <a class="nav-link" href="admin/funcionario">Funcionários</a>
+        <a class="nav-link" href="admin/pagamento">Pagamentos</a>
+        <a class="nav-link" href="admin/formaPagamento">Formas Pagamento</a>
+        <a class="nav-link" href="admin/log">Logs de Auditoria</a>
 
-        <a *ngIf="loginService.hasPermission('cliente')" class="nav-link" href="cliente/perfil">Perfil</a>
-        <a *ngIf="loginService.hasPermission('cliente')" class="nav-link" href="cliente/horarios">Horários Cadastrados</a>
+        <!-- <a *ngIf="true === false" class="nav-link" href="cliente/perfil">Perfil</a>
+        <a *ngIf="loginService.hasPermission('cliente')" class="nav-link" href="cliente/horarios">Horários Cadastrados</a> -->
        
       </div>
       <div class="navbar-nav ms-auto">

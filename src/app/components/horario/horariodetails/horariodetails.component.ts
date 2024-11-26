@@ -157,13 +157,13 @@ export class HorariodetailsComponent {
         this.clienteList = lista;
         const storedIdCliente = localStorage.getItem('idCliente');
 
-        if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
-          this.clienteList = this.clienteList.filter(x => x.idCliente == Number(storedIdCliente));
+        // if (storedIdCliente !== null && this.loginService.hasPermission("cliente")) {
+        //   this.clienteList = this.clienteList.filter(x => x.idCliente == Number(storedIdCliente));
 
-          this.clienteObj = this.clienteList[0];
+        //   this.clienteObj = this.clienteList[0];
 
-          this.obj.cliente = this.clienteObj;
-        } 
+        //   this.obj.cliente = this.clienteObj;
+        // } 
       },
       error: erro => {
         Swal.fire({

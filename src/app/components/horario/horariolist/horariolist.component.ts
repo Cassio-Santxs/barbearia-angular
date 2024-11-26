@@ -40,11 +40,12 @@ export class HorariolistComponent {
   objEdit!: Horario;
 
   constructor() {
-    if(this.loginService.hasPermission("admin"))
-      this.listAll();
-    else {
-      this.listAllByCliente();
-    }
+    this.listAll();
+    // if(this.loginService.hasPermission("admin"))
+     
+    // else {
+    //   this.listAllByCliente();
+    // }
   }
 
   listAll(){

@@ -38,17 +38,18 @@ export class LoginComponent {
           next: token => { // QUANDO DÁ CERTO
             console.log(token);
         if(token)
-          //console.log(token)
           this.loginService.addToken(token); //MUITO IMPORTANTE
-          if(this.loginService.hasPermission("admin"))
-            {
-              localStorage.setItem('idCliente', "10");
-              this.router.navigate(['/admin/dashboard']);
-            }
-            else {
-              localStorage.setItem('idCliente', this.cliente?.idCliente != null ? this.cliente?.idCliente.toString() : "10");
-              this.router.navigate(['/cliente/perfil']);
-            }
+          localStorage.setItem('idCliente', "10");
+          this.router.navigate(['/admin/dashboard']);
+          // if(this.loginService.hasPermission("admin"))
+          //   {
+          //     localStorage.setItem('idCliente', "10");
+          //     this.router.navigate(['/admin/dashboard']);
+          //   }
+          //   else {
+          //     localStorage.setItem('idCliente', this.cliente?.idCliente != null ? this.cliente?.idCliente.toString() : "10");
+          //     this.router.navigate(['/cliente/perfil']);
+          //   }
           },
           error: erro => { // QUANDO DÁ ERRO
             //alert('Usuário ou senha incorretas');

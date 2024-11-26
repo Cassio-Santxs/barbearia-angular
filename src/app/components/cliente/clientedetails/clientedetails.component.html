@@ -6,16 +6,16 @@
       <div class="card">
         <div class="card-body">
           
-          <h3 *ngIf="loginService.hasPermission('admin')">Cadastro de Cliente:</h3>
-          <h3 *ngIf="loginService.hasPermission('cliente')">Perfil</h3>
+          <h3 >Cadastro de Cliente:</h3>
+          <!-- <h3 *ngIf="loginService.hasPermission('cliente')">Perfil</h3> -->
 
-          <div *ngIf="loginService.hasPermission('cliente')" class="row my-4">
+          <!-- <div *ngIf="loginService.hasPermission('cliente')" class="row my-4">
             <div class="d-flex justify-content-center align-items-center">
               <div class="border border-dark rounded-circle d-flex justify-content-center align-items-center" style="width: 250px; height: 250px; border: 3px solid #4F4F4F !important;">
                 <i class="fa-solid fa-user fa-10x"></i>
               </div>
             </div>            
-          </div>
+          </div> -->
           
           <div class="row my-4">
             <div class="col-lg-4 col-xs-4">
@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <div *ngIf="loginService.hasPermission('cliente')" class="row my-4">
+          <!-- <div *ngIf="loginService.hasPermission('cliente')" class="row my-4">
             <div class="col-lg-12 col-xs-12">
                 <mdb-form-control>
                     <input mdbInput type="password" id="dsSenha" class="form-control" [(ngModel)]="obj.dsSenha" />
@@ -67,7 +67,7 @@
                     <label mdbLabel class="form-label" for="confirmSenha">Confirmar Senha</label>
                 </mdb-form-control>
             </div>
-          </div>
+          </div> -->
           
           <div class="row">
             <div class="col-lg-12 text-end">
