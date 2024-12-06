@@ -29,40 +29,63 @@ export class LoginComponent {
     this.loginService.removerToken();
   }
 
-  logar() {
-    this.clienteService.findByUsername(this.login.username).subscribe({
-      next: data => {
-        this.cliente = data;
+  // logar() {
+  //   this.clienteService.findByUsername(this.login.username).subscribe({
+  //     next: data => {
+  //       this.cliente = data;
 
-        this.loginService.logar(this.login).subscribe({
-          next: token => { // QUANDO DÁ CERTO
-            console.log(token);
-        if(token)
-          this.loginService.addToken(token); //MUITO IMPORTANTE
+  //       this.loginService.logar(this.login).subscribe({
+  //         next: token => { // QUANDO DÁ CERTO
+  //           console.log(token);
+  //       if(token)
+  //         this.loginService.addToken(token); //MUITO IMPORTANTE
+  //         localStorage.setItem('idCliente', "10");
+  //         this.router.navigate(['/admin/dashboard']);
+  //         // if(this.loginService.hasPermission("admin"))
+  //         //   {
+  //         //     localStorage.setItem('idCliente', "10");
+  //         //     this.router.navigate(['/admin/dashboard']);
+  //         //   }
+  //         //   else {
+  //         //     localStorage.setItem('idCliente', this.cliente?.idCliente != null ? this.cliente?.idCliente.toString() : "10");
+  //         //     this.router.navigate(['/cliente/perfil']);
+  //         //   }
+  //         },
+  //         error: erro => { // QUANDO DÁ ERRO
+  //           //alert('Usuário ou senha incorretas');
+  //           console.error(erro);
+  //         }
+  //       });
+  //     },
+  //     error: erro => {
+  //       Swal.fire({
+  //         title: erro.error ? erro.error.toString()  : erro.message.toString(),
+  //         icon: 'error',
+  //         confirmButtonText: 'Ok'
+  //       });
+  //     }
+  //   });
+  // }
+
+  logar() {
+    this.loginService.logar(this.login).subscribe({
+      next: token => { 
+        if(token) {
+          this.loginService.addToken(token);
           localStorage.setItem('idCliente', "10");
           this.router.navigate(['/admin/dashboard']);
-          // if(this.loginService.hasPermission("admin"))
-          //   {
-          //     localStorage.setItem('idCliente', "10");
-          //     this.router.navigate(['/admin/dashboard']);
-          //   }
-          //   else {
-          //     localStorage.setItem('idCliente', this.cliente?.idCliente != null ? this.cliente?.idCliente.toString() : "10");
-          //     this.router.navigate(['/cliente/perfil']);
-          //   }
-          },
-          error: erro => { // QUANDO DÁ ERRO
-            //alert('Usuário ou senha incorretas');
-            console.error(erro);
-          }
-        });
+        } else {
+          console.error("ERRO AO PEGAR O TOKEN");
+          console.error(token);
+        }
       },
-      error: erro => {
+      error: erro => { 
         Swal.fire({
           title: erro.error ? erro.error.toString()  : erro.message.toString(),
           icon: 'error',
           confirmButtonText: 'Ok'
         });
+        console.error(erro);
       }
     });
   }
